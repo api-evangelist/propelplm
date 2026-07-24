@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  version: '3.0'
+  title: Get Bom Assembly assets API
+  license:
+    name: MIT
+servers:
+- url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+tags:
+- name: assets
+paths:
+  /assets/{assetId}:
+    get:
+      operationId: getAssetInfo
+      summary: Get Asset Info
+      tags:
+      - assets
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                fileURL: <string>
+                fileType: <string>
+                fileSize: <number>
+                category:
+                  id: <string>
+                  name: <string>
+                assetRelationships:
+                - valueId: <string>
+                  linkedRecordName: <string>
+                  linkedRecordId: <string>
+                  labelName: <string>
+                  labelId: <string>
+                - valueId: <string>
+                  linkedRecordName: <string>
+                  linkedRecordId: <string>
+                  labelName: <string>
+                  labelId: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found

@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  version: '3.0'
+  title: Get Bom Assembly products API
+  license:
+    name: MIT
+servers:
+- url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+tags:
+- name: products
+paths:
+  /products/{productId}:
+    get:
+      operationId: getProductInfo
+      summary: Get Product Info
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/variants:
+    get:
+      operationId: getProductVariantValue
+      summary: Get Product Variant Value
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/attributes:
+    get:
+      operationId: getProductSAttributeAll
+      summary: Get Product's Attribute All
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/attributes/{primaryKey}:
+    get:
+      operationId: getProductSAttributeOne
+      summary: Get Product's Attribute One
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: primaryKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                labelId: <string>
+                label: <string>
+                type: <string>
+                valueId: <string>
+                value: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                variantValue:
+                  id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/assets:
+    get:
+      operationId: getProductSAssets
+      summary: Get Product's Assets
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found

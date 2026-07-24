@@ -1,0 +1,1033 @@
+openapi: 3.0.0
+info:
+  version: '3.0'
+  title: Get Assembly BOM API
+  license:
+    name: MIT
+servers:
+- url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+tags:
+- name: BOM
+paths:
+  /item/{itemNumber}/bom:
+    get:
+      summary: BOM
+      description: Query to return a list of assembly records which represent the full BOM for the given Item.
+      operationId: getBom
+      tags:
+      - BOM
+      parameters:
+      - name: itemNumber
+        in: path
+        description: Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision.
+        required: true
+        schema:
+          type: string
+          format: string
+      - name: level
+        in: query
+        description: Level of BOM to fetch. Defaults to All levels. Accepts 'all' or '1', '2', '3', etc.
+        required: false
+        schema:
+          type: string
+          format: string
+          default: all
+      - name: delta
+        in: query
+        description: Returns the deltas in the BOM between the latest released revision and previous revision in addition to the BOM.
+        required: false
+        schema:
+          type: boolean
+          format: boolean
+          default: false
+      - name: flatten
+        in: query
+        description: Returns a list of parts in the assembly without level. Will combine duplicate BOM rows that exist at different levels into a single BOM row.
+        required: false
+        schema:
+          type: boolean
+          format: boolean
+          default: false
+      responses:
+        '200':
+          description: Bill of Materials for a specified Item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBom'
+        '404':
+          description: Change Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /bom/{itemNumber}:
+    get:
+      operationId: getBom
+      summary: Get BOM
+      tags:
+      - BOM
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - attributes:
+                  type: PLMJ__Manufacturer_Item__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000002GfIDEA0
+                PLMJ__Allocation__c: 100
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Include_In_Cost_Rollup__c: false
+                PLMJ__Manufacturer_Part__r:
+                  attributes:
+                    type: PLMJ__Manufacturer_Part__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000001bYX6EAM
+                  PLMJ__Manufacturer__c: 0014600000ValYAAAZ
+                  PLMJ__Manufacturer__r:
+                    attributes:
+                      type: Account
+                      url: /services/data/v44.0/sobjects/Account/0014600000ValYAAAZ
+                    Id: 0014600000ValYAAAZ
+                    Name: United Oil & Gas Corp.
+                  Id: a0G46000001bYX6EAM
+                  Name: ABC-123
+                PLMJ__Manufacturer_Name__c: United Oil & Gas Corp.
+                PLMJ__Distributor_Name__c: null
+                PLMJ__Manufacturer_Part_Name__c: ABC-123
+                PLMJ__Use_Cost__c: false
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0F46000002GfIDEA0
+                Id: a0F46000002GfIDEA0
+                PLMJ__Manufacturer_Part__c: a0G46000001bYX6EAM
+                PLMJ__Use_Cost_Allocation__c: 100
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WHAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: mLUxR0E97EKVu4vlaNed
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj2EAC
+                    Id: a0C4p000002Vjj2EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj2EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Oc5qEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVKAEA4
+                  Name: 100-0002
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVKAEA4
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a0146000006742u
+                PLMJ__Item__c: a0D46000003Oc5qEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Oc5qEAC-mLUxR0E97EKVu4vlaNed
+                Id: a0146000006h9WHAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVKAEA4
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Oc5qEAC
+                  PLMJ__Related_Change__c: a0546000005bVTDAA2
+                  Name: 100-0002:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2
+                    Id: a0546000005bVTDAA2
+                    Name: ECO00011
+                  PLMJ__Master_Item__c: a0D46000003Oc5qEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVKAEA4
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:39:37.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WGAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 0AuYUx07Z1S77AA97wSO
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj3EAC
+                    Id: a0C4p000002Vjj3EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj3EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003OwytEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVK0EAO
+                  Name: 100-0003
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVK0EAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a0146000006748c
+                PLMJ__Item__c: a0D46000003OwytEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003OwytEAC-0AuYUx07Z1S77AA97wSO
+                Id: a0146000006h9WGAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVK0EAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003OwytEAC
+                  PLMJ__Related_Change__c: a0546000005bVSyAAM
+                  Name: 100-0003:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVSyAAM
+                    Id: a0546000005bVSyAAM
+                    Name: ECO00010
+                  PLMJ__Master_Item__c: a0D46000003OwytEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVK0EAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:30:39.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WIAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 6ZhyvZZhploYdCK896TL
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj4EAC
+                    Id: a0C4p000002Vjj4EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj4EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Ox6xEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVSiEAO
+                  Name: 100-0004
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVSiEAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a01460000067492
+                PLMJ__Item__c: a0D46000003Ox6xEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Ox6xEAC-6ZhyvZZhploYdCK896TL
+                Id: a0146000006h9WIAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSiEAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Ox6xEAC
+                  PLMJ__Related_Change__c: a0546000005bVTDAA2
+                  Name: 100-0004:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2
+                    Id: a0546000005bVTDAA2
+                    Name: ECO00011
+                  PLMJ__Master_Item__c: a0D46000003Ox6xEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVSiEAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:39:37.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WKAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: iYQI9nWQj8zbaZxjYP93
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO
+                    PLMJ__Related_Change__c: a0546000005bVTNAA2
+                    Id: a0C46000001ZVSsEAO
+                    PLMJ__Released__c: true
+                  PLMJ__Latest_Revision__c: a0C46000001ZVSsEAO
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Ox7MEAS
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVSsEAO
+                  Name: 100-0005
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVSsEAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: false
+                Name: a014600000674yC
+                PLMJ__Item__c: a0D46000003Ox7MEAS
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Ox7MEAS-iYQI9nWQj8zbaZxjYP93
+                Id: a0146000006h9WKAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Ox7MEAS
+                  PLMJ__Related_Change__c: a0546000005bVTNAA2
+                  Name: 100-0005:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTNAA2
+                    Id: a0546000005bVTNAA2
+                    Name: ECO00012
+                  PLMJ__Master_Item__c: a0D46000003Ox7MEAS
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVSsEAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:47:09.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WJAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 0J1dsp5IwgFd86R1nj84
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG
+                    PLMJ__Related_Change__c: a0546000005bW5BAAU
+                    Id: a0C46000001ZW2wEAG
+                    PLMJ__Released__c: true
+                  PLMJ__Latest_Revision__c: a0C46000001ZW2wEAG
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003PFnNEAW
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZW2wEAG
+                  Name: 100-0006
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZW2wEAG
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: false
+                Name: a014600000674yR
+                PLMJ__Item__c: a0D46000003PFnNEAW
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003PFnNEAW-0J1dsp5IwgFd86R1nj84
+                Id: a0146000006h9WJAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003PFnNEAW
+                  PLMJ__Related_Change__c: a0546000005bW5BAAU
+                  Name: 100-0006:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bW5BAAU
+                    Id: a0546000005bW5BAAU
+                    Name: ECO00013
+                  PLMJ__Master_Item__c: a0D46000003PFnNEAW
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZW2wEAG
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-05T17:55:47.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WLAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: Y0GYjmQglZQRnIc9kd21
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj5EAC
+                    Id: a0C4p000002Vjj5EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj5EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003PKJTEA4
+                  PLMJ__Latest_Released_Revision__c: a0C46000001V0siEAC
+                  Name: 100-0007
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001V0siEAC
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a01460000067Aqg
+                PLMJ__Item__c: a0D46000003PKJTEA4
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21
+                Id: a0146000006h9WLAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001V0siEAC
+                  PLMJ__Has_Aml__c: true
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003PKJTEA4
+                  PLMJ__Related_Change__c: a0546000006JHZiAAO
+                  Name: 100-0007:B
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000006JHZiAAO
+                    Id: a0546000006JHZiAAO
+                    Name: ECO00030
+                  PLMJ__Master_Item__c: a0D46000003PKJTEA4
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001V0siEAC
+                  PLMJ__Revision__c: B
+                  PLMJ__Released_Date_Time__c: 2018-03-21T17:29:16.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Manufacturer_Item__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000001LEiwEAG
+                PLMJ__Allocation__c: 100
+                PLMJ__Parent_Item__c: a0D46000003PKJT
+                PLMJ__Item_Revision__c: a0C46000001V0siEAC
+                PLMJ__Include_In_Cost_Rollup__c: false
+                PLMJ__Manufacturer_Part__r:
+                  attributes:
+                    type: PLMJ__Manufacturer_Part__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000002uZ2bEAE
+                  PLMJ__Manufacturer__c: 0014600000ValY9AAJ
+                  PLMJ__Manufacturer__r:
+                    attributes:
+                      type: Account
+                      url: /services/data/v44.0/sobjects/Account/0014600000ValY9AAJ
+                    Id: 0014600000ValY9AAJ
+                    Name: Grand Hotels & Resorts Ltd
+                  PLMJ__Part_Costs__r:
+                    totalSize: 6
+                    done: true
+                    records:
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002TlFMAA0
+                      PLMJ__Cost__c: 50
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-03-21'
+                      Id: a0k46000002TlFMAA0
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbaXAAS
+                      PLMJ__Cost__c: 55
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbaXAAS
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbacAAC
+                      PLMJ__Cost__c: 50
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbacAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbahAAC
+                      PLMJ__Cost__c: 51
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbahAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbcTAAS
+                      PLMJ__Cost__c: 51.5
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbcTAAS
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002Um0fAAC
+                      PLMJ__Cost__c: 51
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-08'
+                      Id: a0k46000002Um0fAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                  Id: a0G46000002uZ2bEAE
+                  Name: ABCDEFG
+                PLMJ__Manufacturer_Name__c: Grand Hotels & Resorts Ltd
+                PLMJ__Distributor_Name__c: null
+                PLMJ__Manufacturer_Part_Name__c: ABCDEFG
+                PLMJ__Use_Cost__c: false
+                PLMJ__ParentUniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21
+                PLMJ__UniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21,a0F46000001LEiwEAG
+                Id: a0F46000001LEiwEAG
+                PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                PLMJ__Use_Cost_Allocation__c: 100
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+    put:
+      operationId: updateBom
+      summary: Update BOM
+      tags:
+      - BOM
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              bomList:
+              - name: 600-00009
+                quantity: 5
+              - name: 600-00010
+                quantity: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PLMJ__Item_Revision__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2
+                PLMJ__Cancelled__c: false
+                PLMJ__ProductCode__c: null
+                LastModifiedDate: 2019-07-16T20:02:00.000+0000
+                PLMJ__Has_Attachments__c: false
+                PLMJ__Description__c: null
+                PLMJ__Has_Quality__c: false
+                PLMJ__Revision_Status__c: Pending
+                PLMJ__Detailed_Description__c: null
+                PLMJ__Training_Quiz__c: null
+                Name: 100-00030:01*
+                PLMJ__Release_Number__c: null
+                CreatedById: 005460000013ZT8AAM
+                PLMJ__Master_Item_Name__c: null
+                PLMJ__Custom_Picklist__c: Value 1
+                PLMJ__Custom_Field__c: null
+                PLMJ__Released__c: false
+                PLMJ__Test__c: null
+                PLMJ__Has_Aml__c: false
+                IsDeleted: false
+                CreatedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Test_Rich_Text__c: null
+                PLMJ__Released_Date__c: '2019-07-16'
+                LastViewedDate: null
+                PLMJ__Assembly_Only_Field__c: null
+                PLMJ__Required_Field_Warning__c: null
+                PLMJ__Capacitance__c: null
+                CreatedDate: 2019-04-05T21:15:24.000+0000
+                PLMJ__Rebaseline_Draft__c: null
+                PLMJ__Is_Latest_Released__c: false
+                PLMJ__Test_field__c: null
+                Id: a0C46000002aKDHEA2
+                PLMJ__Quiz__c: null
+                PLMJ__Is_Latest__c: true
+                PLMJ__Effective_Date1__c: null
+                LastModifiedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Related_Change__c: null
+                PLMJ__Cost__c: 0
+                PLMJ__Latest__c: Draft
+                PLMJ__Category_Control__c: Assembly
+                LastReferencedDate: null
+                PLMJ__Category__c: Assembly
+                PLMJ__Training_Required__c: false
+                PLMJ__Has_Parent__c: false
+                PLMJ__Phase_Unique__c: a0E46000000ApFF:Initial
+                PLMJ__Base_SKU__c: null
+                PLMJ__Jayson_s_Test__c: null
+                PLMJ__My_new_field__c: false
+                PLMJ__Revision__c: '01'
+                PLMJ__Completeness__c: null
+                PLMJ__PrimaryKey__c: null
+                PLMJ__Lifecycle_Phase__c: Initial
+                PLMJ__test1234__c: null
+                PLMJ__Master_Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000005h6g7EAA
+                  Id: a0D46000005h6g7EAA
+                  Name: 100-00030
+                PLMJ__Testing_Testing__c: null
+                PLMJ__Training_Due_Date__c: null
+                PLMJ__Expired__c: false
+                PLMJ__Testing_Number_field__c: null
+                PLMJ__On_Change__c: false
+                PLMJ__Aml_Count__c: 0
+                PLMJ__Master_Item_Number__c: 100-00030
+                PLMJ__Has_Open_Quality__c: false
+                SystemModstamp: 2019-07-16T20:02:00.000+0000
+                PLMJ__Has_Bom__c: true
+                PLMJ__Master_Item__c: a0D46000005h6g7EAA
+                PLMJ__test_test_test__c: null
+                LastActivityDate: null
+                LastModifiedById: 005460000013ZT8AAM
+                PLMJ__End_Date_Time__c: null
+                PLMJ__Released_Date_Time__c: 2019-07-16T19:13:43.000+0000
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+components:
+  schemas:
+    Assembly:
+      type: object
+      description: Assembly row represented in a BOM.
+      required:
+      - id
+      - name
+      - level
+      properties:
+        Id:
+          type: string
+          description: Id of the child Item record
+        PDLM__Item_Number__c:
+          type: string
+          description: Name of the child Item record
+        PDLM__Level__c:
+          type: string
+          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Assembly__c object.
+    Row:
+      type: array
+      items:
+        $ref: '#/components/schemas/RowObjects'
+      description: Array of Objects containing information about a changed bom row
+    Rows:
+      type: object
+      description: Contains information about a changed bom row.
+      required:
+      - Row
+      properties:
+        Row:
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
+    GetBom:
+      type: object
+      required:
+      - returnBom
+      properties:
+        returnBom:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReturnBom'
+          description: Array of objects containing information about the manufacturer items and assemblies associated with the bom.
+        deltaBom:
+          type: object
+          items:
+            $ref: '#/components/schemas/DeltaBom'
+          description: Contains information about changes in the bom.
+    RowObjects:
+      required:
+      - UniqueId
+      - Status
+      properties:
+        UniqueId:
+          type: string
+          description: Name of changed Item__c or Manufacturer_Part__c
+        Status:
+          type: string
+          description: Status of object. Added, Deleted, or Updated.
+        SecondaryKey:
+          type: string
+          description: Unique Identifier for an Assembly__c (Secondary_Unique_Key__c).
+        Fields:
+          type: object
+          items:
+            $ref: '#/components/schemas/Fields'
+          description: Object containing Fields that have been updated on this assembly.
+    Field:
+      type: array
+      items:
+        $ref: '#/components/schemas/FieldObject'
+      description: Array of objects containing information about fields that have been updated
+    Manufacturer:
+      type: object
+      description: Manufacturer Part representing AML rows
+      required:
+      - id
+      properties:
+        Id:
+          type: string
+          description: Id of the Manufacturer Part record
+        Name:
+          type: string
+          description: Name of the Manufacturer Part record
+        PDLM__Manufacturer__c:
+          type: string
+          description: Id of the Account record representing the manufacturer
+        PDLM__Manufacturer_Name__c:
+          type: string
+        PDLM__Primary_Key__c:
+          type: string
+          description: Primary key unique identifier for the Manufacturer Part record
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Manufacturer_Part__c object.
+    Fields:
+      type: object
+      description: Object containing Fields that have been updated on this assembly.
+      required:
+      - Field
+      properties:
+        field:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    ReturnBom:
+      type: object
+      required:
+      - assemblies
+      - manufacturerItems
+      properties:
+        assemblies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assembly'
+        manufacturerItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Manufacturer'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    DeltaBom:
+      type: object
+      description: Contains Manufacturer Parts, Details, and Items that have been changed in the bom.
+      required:
+      - ManufacturerParts
+      - Details
+      - Bom
+      properties:
+        ManufacturerParts:
+          type: object
+          items:
+            $ref: '#/components/schemas/Rows'
+        Details:
+          type: object
+          items:
+            $ref: '#/components/schemas/Fields'
+        Bom:
+          type: object
+          items:
+            $ref: '#/components/schemas/Rows'
+    FieldObject:
+      type: object
+      required:
+      - OldValue
+      - NewValue
+      - Name
+      properties:
+        OldValue:
+          type: string
+          description: previous value of the field
+        NewValue:
+          type: string
+          description: Updated value of the field
+        Name:
+          type: string
+          description: Name of the field that has been updated

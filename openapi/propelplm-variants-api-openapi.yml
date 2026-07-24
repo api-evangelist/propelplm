@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  version: '3.0'
+  title: Get Bom Assembly variants API
+  license:
+    name: MIT
+servers:
+- url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+tags:
+- name: variants
+paths:
+  /variants/{variantValueId}:
+    get:
+      operationId: getVariantValueInfo
+      summary: Get Variant Value Info
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/attributes:
+    get:
+      operationId: getVariantValueSAttributeAll
+      summary: Get Variant Value's Attribute All
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/attributes/{primaryKey}:
+    get:
+      operationId: getVariantValueSAttributeOne
+      summary: Get Variant Value's Attribute One
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: primaryKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                labelId: <string>
+                label: <string>
+                type: <string>
+                valueId: <string>
+                value: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                variantValue:
+                  id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/assets:
+    get:
+      operationId: getVariantValueSAssets
+      summary: Get Variant Value's Assets
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found

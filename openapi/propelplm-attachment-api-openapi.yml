@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  version: '3.0'
+  title: Get Bom Assembly Attachment API
+  license:
+    name: MIT
+servers:
+- url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+tags:
+- name: Attachment
+paths:
+  /attachment:
+    post:
+      operationId: uploadAttachment
+      summary: Upload Attachment
+      tags:
+      - Attachment
+      security:
+      - salesforceOAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              itemName: 100-00030
+              objectName: Item__c
+              link: https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052
+              docName: 3d Model in Onshape
+              description: Link to Onshape 3d Model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PLMJ__Document__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Document__c/a094600000530J8AAI
+                LastModifiedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                LastModifiedDate: 2019-07-20T19:21:02.000+0000
+                PLMJ__SKU_Grid_Id__c: null
+                Owner:
+                  attributes:
+                    type: Name
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Item_Revision_Key__c: null
+                PLMJ__Item_Revision__c: a0C46000002aKDHEA2
+                PLMJ__Google_File_Id__c: null
+                LastReferencedDate: null
+                Name: datasheet.pdf
+                PLMJ__Content_Location__c: S
+                PLMJ__Document_Title__c: Datasheet for GRM0335C1H101JA01_
+                CreatedById: 005460000013ZT8AAM
+                OwnerId: 005460000013ZT8AAM
+                PLMJ__External_Attachment_URL__c: null
+                PLMJ__URL_Unique__c: null
+                PLMJ__Primary_Key__c: null
+                PLMJ__Moxtra_Binder__c: null
+                PLMJ__Document_Version_Download__c: sfc/servlet.shepherd/version/download/06846000003yATXAA2?asPdf=false&operationContext=CHATTER
+                PLMJ__Content_Id__c: 06946000003l2zmAAA
+                IsDeleted: false
+                CreatedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Has_Redlines__c: false
+                LastViewedDate: null
+                PLMJ__SKU__c: null
+                PLMJ__Last_Modified_Date__c: 2019-07-20T19:21:02.000+0000
+                PLMJ__Checked_Out_User_Name__c: null
+                SystemModstamp: 2019-07-20T19:21:02.000+0000
+                PLMJ__Check_Out_Date_Time__c: null
+                PLMJ__Thumbnail__c: <img src="/sfc/servlet.shepherd/version/renditionDownload/?rendition=THUMB120BY90&amp;versionId=06846000003yATXAA2" alt="-" border="0"/>
+                PLMJ__Document_Version__c: 06846000003yATXAA2
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2
+                  Id: a0C46000002aKDHEA2
+                  Name: 100-00030:01*
+                PLMJ__File_Extension__c: pdf
+                PLMJ__Check_Out_User__c: null
+                PLMJ__Primary_Attachment__c: false
+                PLMJ__Version_Number__c: '1'
+                CreatedDate: 2019-07-20T19:21:02.000+0000
+                PLMJ__Document_Size__c: 823071
+                PLMJ__GridId__c: 06846000003yATXAA2
+                Id: a094600000530J8AAI
+                LastModifiedById: 005460000013ZT8AAM
+                PLMJ__Preview_All_Versions__c: 06946000003l2zmAAA
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /item/{itemId}/attachment:
+    get:
+      summary: Get Attachment Information
+      description: Gets all necessary information for attachments for a specific item. Returns array of Document__c records
+      operationId: attachmentGet
+      tags:
+      - Attachment
+      parameters:
+      - name: itemId
+        in: path
+        description: Id of desired Item.
+        required: true
+        schema:
+          type: string
+          format: string
+      - name: revision
+        in: query
+        description: Item Revision Id or Name. Gets attachments for specified rev
+        required: false
+        schema:
+          type: string
+          format: string
+      - name: Get Nested Attachments
+        in: query
+        description: If true, retrieves all attachments from all bom levels.
+        required: false
+        schema:
+          type: boolean
+          format: boolean
+          default: false
+      responses:
+        '200':
+          description: Array of Document__c records corresponding to attachments on desired Item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        '404':
+          description: Change Order not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ItemDetails:
+      type: object
+      description: If get Nested Attachment = true, returns Id, Item Number, and Revision of nested items in bom.
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Id of the nested Item
+        Item Number:
+          type: string
+          description: Name of the  nested Item
+        Revision:
+          type: string
+          description: Id of the revision for the nested Item
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Document__c object.
+    Document:
+      type: object
+      description: Document records attached to items
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Id of the Attachment (Document__c) record
+        name:
+          type: string
+          description: Name of the attachment
+        PDLM__Document_Version__c:
+          type: string
+          description: The latest content version ID associated with the attachment. This contains the files latest base64 encoded content.
+        PDLM__External_Attachment_URL__c:
+          type: string
+          description: URL of the attachment if applicable.
+        itemDetails:
+          type: object
+          description: If get Nested Attachment = true, returns Id, Item Number, and Revision of nested items.
+          items:
+            $ref: '#/components/schemas/ItemDetails'
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Document__c object.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
