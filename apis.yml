@@ -1,27 +1,276 @@
 aid: propelplm
-name: Propelplm
-description: 'Propelplm is a company surfaced as a portfolio company of norwest-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting
-  the enrichment pipeline.'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 32
+  pass: local-v1
+name: Propel Software (Propel PLM)
+description: >-
+  Propel Software is an AI-powered product data platform for manufacturers and product companies,
+  unifying Product Lifecycle Management (PLM), Quality Management (QMS), and Product Information
+  Management (PIM) on a single system of record built natively on the Salesforce Platform. Propel
+  exposes a resource-based REST API (Salesforce Apex REST) for the core PLM objects — Items, Bills of
+  Material, Changes/ECOs, and Attachments — plus a bulk Import API and a read-oriented PIM API for
+  syndicating product, variant, category, channel, and digital-asset data to commerce and marketing
+  channels. All API access is authenticated with Salesforce OAuth 2.0 bearer tokens and executes within
+  the requesting user's permission scope. Propel is backed by Norwest Venture Partners.
 url: https://raw.githubusercontent.com/api-evangelist/propelplm/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.propelsoftware.com/favicon.ico
 tags:
 - Company
-- Unknown
-apis: []
+- Product Lifecycle Management
+- PLM
+- Quality Management
+- QMS
+- Product Information Management
+- PIM
+- Manufacturing
+- Salesforce
+- Bill of Materials
+- Change Management
+apis:
+- aid: propelplm:propelplm-assembly-api
+  name: Propel Software (Propel PLM) Assembly API
+  description: The Assembly API from Propel Software (Propel PLM) — 1 operation(s) for assembly.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - Assembly
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-assembly-api-openapi.yml
+- aid: propelplm:propelplm-assets-api
+  name: Propel Software (Propel PLM) assets API
+  description: The assets API from Propel Software (Propel PLM) — 1 operation(s) for assets.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - assets
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-assets-api-openapi.yml
+- aid: propelplm:propelplm-attachment-api
+  name: Propel Software (Propel PLM) Attachment API
+  description: The Attachment API from Propel Software (Propel PLM) — 2 operation(s) for attachment.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - Attachment
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-attachment-api-openapi.yml
+- aid: propelplm:propelplm-bill-of-material-api
+  name: Propel Software (Propel PLM) Bill of Material API
+  description: >-
+    The Bill of Material API from Propel Software (Propel PLM) — 1 operation(s) for bill of material.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - Bill of Material
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-bill-of-material-api-openapi.yml
+- aid: propelplm:propelplm-bom-api
+  name: Propel Software (Propel PLM) BOM API
+  description: The BOM API from Propel Software (Propel PLM) — 2 operation(s) for bom.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - BOM
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-bom-api-openapi.yml
+- aid: propelplm:propelplm-categories-api
+  name: Propel Software (Propel PLM) categories API
+  description: The categories API from Propel Software (Propel PLM) — 3 operation(s) for categories.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - categories
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-categories-api-openapi.yml
+- aid: propelplm:propelplm-change-api
+  name: Propel Software (Propel PLM) change API
+  description: The change API from Propel Software (Propel PLM) — 3 operation(s) for change.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - change
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-change-api-openapi.yml
+- aid: propelplm:propelplm-channels-api
+  name: Propel Software (Propel PLM) channels API
+  description: The channels API from Propel Software (Propel PLM) — 3 operation(s) for channels.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - channels
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-channels-api-openapi.yml
+- aid: propelplm:propelplm-configuration-api
+  name: Propel Software (Propel PLM) Configuration API
+  description: >-
+    The Configuration API from Propel Software (Propel PLM) — 1 operation(s) for configuration.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-configuration-api-openapi.yml
+- aid: propelplm:propelplm-item-api
+  name: Propel Software (Propel PLM) Item API
+  description: The Item API from Propel Software (Propel PLM) — 2 operation(s) for item.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - Item
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-item-api-openapi.yml
+- aid: propelplm:propelplm-manufactureritem-api
+  name: Propel Software (Propel PLM) ManufacturerItem API
+  description: >-
+    The ManufacturerItem API from Propel Software (Propel PLM) — 1 operation(s) for manufactureritem.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - ManufacturerItem
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-manufactureritem-api-openapi.yml
+- aid: propelplm:propelplm-manufacturerpart-api
+  name: Propel Software (Propel PLM) ManufacturerPart API
+  description: >-
+    The ManufacturerPart API from Propel Software (Propel PLM) — 2 operation(s) for manufacturerpart.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - ManufacturerPart
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-manufacturerpart-api-openapi.yml
+- aid: propelplm:propelplm-markup-api
+  name: Propel Software (Propel PLM) markup API
+  description: The markup API from Propel Software (Propel PLM) — 1 operation(s) for markup.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - markup
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-markup-api-openapi.yml
+- aid: propelplm:propelplm-products-api
+  name: Propel Software (Propel PLM) products API
+  description: The products API from Propel Software (Propel PLM) — 5 operation(s) for products.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - products
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-products-api-openapi.yml
+- aid: propelplm:propelplm-variants-api
+  name: Propel Software (Propel PLM) variants API
+  description: The variants API from Propel Software (Propel PLM) — 4 operation(s) for variants.
+  humanURL: https://developer.propelplm.com/docs/
+  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
+  tags:
+  - variants
+  properties:
+  - type: OpenAPI
+    url: openapi/propelplm-variants-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/propelplm-agentic-access.yml
+- type: TrustCenter
+  url: security/propelplm-trust-center.yml
 - type: Website
-  url: https://propelplm.com
+  url: https://www.propelsoftware.com
+- type: DeveloperPortal
+  url: https://developer.propelplm.com/
+- type: Documentation
+  url: https://developer.propelplm.com/docs/
+- type: APIReference
+  url: https://api-docs.propelplm.com/
+- type: GettingStarted
+  url: https://developer.propelplm.com/docs/available-apis/
+- type: Authentication
+  url: authentication/propelplm-authentication.yml
+- type: OAuthScopes
+  url: scopes/propelplm-scopes.yml
+- type: Blog
+  url: https://converged.propelsoftware.com/
+- type: Support
+  url: https://propelplm.my.site.com/helpcenter/s/
+- type: Pricing
+  url: https://www.propelsoftware.com/pricing
+- type: TermsOfService
+  url: https://www.propelsoftware.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.propelsoftware.com/privacy
+- type: GitHubOrganization
+  url: https://github.com/propelplm
+- type: StatusPage
+  url: https://status.propelsoftware.com/
+- type: Compliance
+  url: https://www.propelsoftware.com/trust
+- type: Postman
+  url: https://api-docs.propelplm.com/
+- type: Packages
+  url: packages/propelplm-packages.yml
+- type: WellKnown
+  url: well-known/propelplm-well-known.yml
+- type: MCPServer
+  url: mcp/propelplm-mcp.yml
+- type: LLMsTxt
+  url: llms/propelplm-llms.txt
+- type: Overlay
+  url: overlays/propelplm-core-overlay.yaml
+- type: Conformance
+  url: conformance/propelplm-conformance.yml
+- type: ErrorCatalog
+  url: errors/propelplm-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/propelplm-lifecycle.yml
+- type: DomainSecurity
+  url: security/propelplm-domain-security.yml
+- type: Conventions
+  url: conventions/propelplm-conventions.yml
+- type: DataModel
+  url: data-model/propelplm-data-model.yml
+- type: ChangeLog
+  url: changelog/propelplm-changelog.yml
+- type: Webhooks
+  url: asyncapi/propelplm-events.yml
+- type: Sandbox
+  url: sandbox/propelplm-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml

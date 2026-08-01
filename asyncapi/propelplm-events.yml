@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: 'https://developer.propelplm.com/docs/ (Integration Patterns: Event-based Messaging)'
+spec_type: Webhooks
+note: Propel does not publish a formal AsyncAPI document. Its event surface is delivered through the Salesforce
+  Platform event-based messaging patterns documented under Integration Patterns.
+mechanisms:
+- name: Platform Events
+  type: pub-sub
+  description: Salesforce Platform Events published on Propel object changes; consumers subscribe via
+    CometD/Pub-Sub API.
+  docs: https://developer.propelplm.com/docs/
+- name: Outbound Messages
+  type: webhook
+  description: Salesforce Outbound Messages (SOAP callouts) triggered by workflow/flow on Propel records
+    to an external endpoint.
+  docs: https://developer.propelplm.com/docs/

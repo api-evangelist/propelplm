@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- https://developer.propelplm.com
+- https://www.propelsoftware.com
+documents:
+- path: /.well-known/security.txt
+  host: developer.propelplm.com
+  status: 404
+- path: /.well-known/security.txt
+  host: www.propelsoftware.com
+  status: 404
+- path: /.well-known/openid-configuration
+  host: developer.propelplm.com
+  status: 404
+- path: /.well-known/api-catalog
+  host: developer.propelplm.com
+  status: 404
+- path: /llms.txt
+  host: developer.propelplm.com
+  status: 404
+note: No /.well-known discovery documents published on the Propel developer or marketing hosts. OAuth
+  is delegated to the Salesforce identity provider (login.salesforce.com/.well-known/openid-configuration).

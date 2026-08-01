@@ -1,0 +1,42 @@
+{
+  "provider": "propelplm",
+  "sources": [
+    "propelplm-assembly-api-openapi.yml",
+    "propelplm-assets-api-openapi.yml",
+    "propelplm-attachment-api-openapi.yml",
+    "propelplm-bill-of-material-api-openapi.yml",
+    "propelplm-bom-api-openapi.yml",
+    "propelplm-categories-api-openapi.yml",
+    "propelplm-change-api-openapi.yml",
+    "propelplm-channels-api-openapi.yml",
+    "propelplm-configuration-api-openapi.yml",
+    "propelplm-item-api-openapi.yml",
+    "propelplm-manufactureritem-api-openapi.yml",
+    "propelplm-manufacturerpart-api-openapi.yml",
+    "propelplm-markup-api-openapi.yml",
+    "propelplm-products-api-openapi.yml",
+    "propelplm-variants-api-openapi.yml"
+  ],
+  "outputs": [
+    "propelplm-assembly-api-openapi.yml",
+    "propelplm-assets-api-openapi.yml",
+    "propelplm-attachment-api-openapi.yml",
+    "propelplm-bill-of-material-api-openapi.yml",
+    "propelplm-bom-api-openapi.yml",
+    "propelplm-categories-api-openapi.yml",
+    "propelplm-change-api-openapi.yml",
+    "propelplm-channels-api-openapi.yml",
+    "propelplm-configuration-api-openapi.yml",
+    "propelplm-item-api-openapi.yml",
+    "propelplm-manufactureritem-api-openapi.yml",
+    "propelplm-manufacturerpart-api-openapi.yml",
+    "propelplm-markup-api-openapi.yml",
+    "propelplm-products-api-openapi.yml",
+    "propelplm-variants-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

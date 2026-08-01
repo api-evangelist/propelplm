@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: propelplm-create-item-and-bom.md
+  name: Create a Propel Item and build its BOM
+  api: openapi/propelplm-core-openapi.yml
+  operations: [createItem, updateBom, uploadAttachment]
+- file: propelplm-manage-change-order.md
+  name: Create and release a Propel Change (ECO)
+  api: openapi/propelplm-core-openapi.yml
+  operations: [createChange, getChangeOrder, changePut]
+- file: propelplm-sync-pim-catalog.md
+  name: Sync a product catalog from Propel PIM
+  api: openapi/propelplm-pim-openapi.yml
+  operations: [getAllCategroies, getCategorySProducts, getProductInfo, getProductSAssets]

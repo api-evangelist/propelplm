@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Propel PLM Core REST API
+  version: 1.0.0
+extends: openapi/propelplm-core-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-platform: Salesforce Apex REST
+    x-agent-ready: true
+- target: $.info
+  update:
+    x-api-evangelist:
+      trust-center: https://www.propelsoftware.com/trust
+      status-page: https://status.propelsoftware.com/
+      developer-portal: https://developer.propelplm.com/

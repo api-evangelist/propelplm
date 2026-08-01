@@ -1,0 +1,66 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/propelplm-configuration-openapi.yml, openapi/propelplm-core-openapi.yml, openapi/propelplm-manufacturer-item-openapi.yml,
+  openapi/propelplm-manufacturer-part-openapi.yml, openapi/propelplm-pim-openapi.yml
+schemes:
+- name: oAuth2Implicit
+  source: openapi/propelplm-configuration-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
+  description: This API uses OAuth 2 with the implicit grant flow.
+- name: salesforceOAuth
+  source: openapi/propelplm-core-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+  description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+- name: oAuth2Implicit
+  source: openapi/propelplm-manufacturer-item-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
+  description: This API uses OAuth 2 with the implicit grant flow.
+- name: oAuth2Implicit
+  source: openapi/propelplm-manufacturer-part-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
+  description: This API uses OAuth 2 with the implicit grant flow.
+- name: salesforceOAuth
+  source: openapi/propelplm-pim-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+scopes:
+- scope: api
+  description: Enable read and write access to Propel objects
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - openapi/propelplm-configuration-openapi.yml
+  - openapi/propelplm-core-openapi.yml
+  - openapi/propelplm-manufacturer-item-openapi.yml
+  - openapi/propelplm-manufacturer-part-openapi.yml
+  - openapi/propelplm-pim-openapi.yml
+- scope: full
+  description: Full access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/propelplm-core-openapi.yml
+- scope: refresh_token
+  description: Obtain refresh tokens for offline access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/propelplm-core-openapi.yml
+- scope: web
+  description: Web access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/propelplm-core-openapi.yml

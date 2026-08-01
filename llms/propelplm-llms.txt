@@ -1,0 +1,48 @@
+# Propel Software (Propel PLM)
+
+> AI-powered product data platform for manufacturers, unifying Product Lifecycle Management (PLM),
+> Quality Management (QMS), and Product Information Management (PIM) natively on the Salesforce Platform.
+> The REST API (Salesforce Apex REST) exposes core PLM objects — Items, Bills of Material, Changes/ECOs,
+> and Attachments — plus a bulk Import API and a read-oriented PIM API. All access uses Salesforce
+> OAuth 2.0 bearer tokens and executes within the requesting user's permission scope.
+
+## APIs
+- [Propel PLM Core REST API](https://developer.propelplm.com/docs/): Items, BOM, Change, Attachment
+- [Propel PIM API](https://developer.propelplm.com/docs/): products, variants, categories, channels, assets
+- [Propel Import API](https://developer.propelplm.com/docs/available-apis/): bulk Items/BOMs/Manufacturer Parts
+
+## Specs
+- [Core OpenAPI](openapi/propelplm-core-openapi.yml)
+- [PIM OpenAPI](openapi/propelplm-pim-openapi.yml)
+- [Get BOM (published)](openapi/propelplm-bom-get-openapi.yml)
+- [Change / Release Package (published)](openapi/propelplm-release-package-openapi.yml)
+- [Item Attachment (published)](openapi/propelplm-item-attachment-openapi.yml)
+- [Markup / Redlines (published)](openapi/propelplm-markup-openapi.yml)
+- [Manufacturer Item (published)](openapi/propelplm-manufacturer-item-openapi.yml)
+- [Manufacturer Part (published)](openapi/propelplm-manufacturer-part-openapi.yml)
+- [Configuration (published)](openapi/propelplm-configuration-openapi.yml)
+
+## Docs
+- [Developer Portal](https://developer.propelplm.com/)
+- [Available APIs](https://developer.propelplm.com/docs/available-apis/)
+- [Authentication (Salesforce OAuth 2.0)](https://developer.propelplm.com/docs/authentication/)
+- [Object Model](https://developer.propelplm.com/docs/object-model/)
+- [API Reference (Postman)](https://api-docs.propelplm.com/)
+
+## Artifacts
+- [Authentication](authentication/propelplm-authentication.yml)
+- [OAuth Scopes](scopes/propelplm-scopes.yml)
+- [Conventions](conventions/propelplm-conventions.yml)
+- [Error catalog](errors/propelplm-problem-types.yml)
+- [Lifecycle](lifecycle/propelplm-lifecycle.yml)
+- [Data model](data-model/propelplm-data-model.yml)
+- [MCP tools (candidate)](mcp/propelplm-mcp.yml)
+- [Agent skills](skills/_index.yml)
+
+## Company
+- [Website](https://www.propelsoftware.com)
+- [Trust Center](https://www.propelsoftware.com/trust)
+- [Status](https://status.propelsoftware.com/)
+- [Blog](https://converged.propelsoftware.com/)
+- [Pricing](https://www.propelsoftware.com/pricing)
+- [GitHub](https://github.com/propelplm)

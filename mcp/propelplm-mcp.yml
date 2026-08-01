@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: Derived from Propel OpenAPI operations; no official Propel-hosted MCP server found as of 2026-07-20.
+server:
+  name: propelplm
+  transport: stdio
+tools:
+- name: get_item
+  description: Retrieve a PLM Item by Item Number or record Id
+  source_operation: openapi/propelplm-core-openapi.yml#getItem
+- name: create_item
+  description: Create a new PLM Item
+  source_operation: openapi/propelplm-core-openapi.yml#createItem
+- name: update_item
+  description: Update fields on a PLM Item
+  source_operation: openapi/propelplm-core-openapi.yml#updateItem
+- name: get_bom
+  description: Retrieve the full Bill of Material for an assembly Item
+  source_operation: openapi/propelplm-core-openapi.yml#getBom
+- name: update_bom
+  description: Replace/update the Bill of Material for an Item
+  source_operation: openapi/propelplm-core-openapi.yml#updateBom
+- name: create_change
+  description: Create a Change (ECO) affecting one or more Items
+  source_operation: openapi/propelplm-core-openapi.yml#createChange
+- name: get_change_order
+  description: Retrieve a Change / Release Package with affected items, BOM, AMLs, attachments
+  source_operation: openapi/propelplm-release-package-openapi.yml#getChangeOrder
+- name: update_change
+  description: Update a Change record
+  source_operation: openapi/propelplm-change-put-openapi.yml#changePut
+- name: upload_attachment
+  description: Attach a file or link to an Item or record
+  source_operation: openapi/propelplm-core-openapi.yml#uploadAttachment
+- name: get_item_attachment
+  description: List attachments on an Item
+  source_operation: openapi/propelplm-item-attachment-openapi.yml#attachmentGet
+- name: get_markup
+  description: Retrieve redline markups for an Item revision
+  source_operation: openapi/propelplm-markup-openapi.yml#markupGet
+- name: get_product
+  description: Retrieve PIM product info
+  source_operation: openapi/propelplm-pim-openapi.yml#getProductInfo
+- name: get_category_products
+  description: List products in a PIM category
+  source_operation: openapi/propelplm-pim-openapi.yml#getCategorySProducts

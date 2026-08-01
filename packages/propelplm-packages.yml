@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/propelplm
+note: Propel PLM ships no first-party language client SDK on public package registries (npm/PyPI/Maven/etc).
+  API access is via Salesforce OAuth 2.0 + REST. The following are first-party integration/tooling repos
+  published on the Propel GitHub organization.
+packages:
+- language: java
+  registry: github
+  name: MulesoftConnector
+  url: https://github.com/propelplm/MulesoftConnector
+  install: git clone https://github.com/propelplm/MulesoftConnector
+  official: true
+  kind: integration-connector
+  description: MuleSoft Anypoint connector for integrating with Propel PLM.
+- language: javascript
+  registry: github
+  name: jira-forge
+  url: https://github.com/propelplm/jira-forge
+  install: git clone https://github.com/propelplm/jira-forge
+  official: true
+  kind: integration
+  description: Atlassian Jira (Forge) integration for Propel.
+- language: apex
+  registry: github
+  name: workspace-adapters
+  url: https://github.com/propelplm/workspace-adapters
+  install: git clone https://github.com/propelplm/workspace-adapters
+  official: true
+  kind: extension
+  description: Example Workspace Apex adapters to run customized searches in Propel.

@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/propelplm-configuration-openapi.yml, openapi/propelplm-core-openapi.yml, openapi/propelplm-manufacturer-item-openapi.yml,
+  openapi/propelplm-manufacturer-part-openapi.yml, openapi/propelplm-pim-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+schemes:
+- name: oAuth2Implicit
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
+    scopes: 1
+  description: This API uses OAuth 2 with the implicit grant flow.
+  sources:
+  - openapi/propelplm-configuration-openapi.yml
+  - openapi/propelplm-manufacturer-item-openapi.yml
+  - openapi/propelplm-manufacturer-part-openapi.yml
+- name: salesforceOAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+    scopes: 4
+  description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+  sources:
+  - openapi/propelplm-core-openapi.yml
+  - openapi/propelplm-pim-openapi.yml

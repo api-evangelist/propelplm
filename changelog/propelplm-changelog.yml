@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: searched
+source: https://api-docs.propelplm.com/ (Propel APIs 4.6.x and later) ; https://propelplm.my.site.com/helpcenter/s/
+scheme: product-release-train
+current_version: 4.6.x
+note: Propel ships packaged releases on the 4.x train (API documented as "4.6.x and later"); dated per-release
+  notes are published in the Propel Help Center. Core REST resources are versioned in-path (v2/v3).
+entries:
+- version: 4.6.x
+  date: null
+  highlights:
+  - Current documented API baseline
+  - v3 Change Release Package endpoint (affected items, BOM, AMLs, attachments)

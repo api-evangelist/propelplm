@@ -1,0 +1,75 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/*, https://developer.propelplm.com/docs/object-model-core-objects/
+entities:
+- name: Item
+  sobject: PDLM__Item__c
+  key: Item Number
+  description: Core part/product record; revision-controlled.
+- name: ItemRevision
+  sobject: PLMJ__Item_Revision__c
+  description: A specific released/working revision of an Item.
+- name: BOM
+  sobject: PLMJ__Item_Revision__c (assembly rows)
+  description: Bill of Material — assembly relationships of child Items with quantities.
+- name: Change
+  sobject: Change (ECO)
+  key: Change record Id
+  description: Change order / ECO governing item revisions.
+- name: ManufacturerItem
+  sobject: PLMJ__Manufacturer_Item__c
+  description: Approved manufacturer item (AML) linked to an Item.
+- name: ManufacturerPart
+  description: Manufacturer part record referenced by manufacturer items.
+- name: Attachment
+  sobject: PLMJ__Document__c
+  description: File or link attachment on an Item/record.
+- name: Product
+  description: PIM product surfaced to commerce/marketing channels.
+- name: Category
+  description: PIM category grouping products.
+- name: Channel
+  description: PIM publication channel.
+- name: VariantValue
+  description: PIM product variant value.
+relationships:
+- from: Item
+  type: has_many
+  to: ItemRevision
+  via: revisions
+- from: Item
+  type: has_one
+  to: BOM
+  via: latest released revision
+- from: BOM
+  type: has_many
+  to: Item
+  via: child assembly rows
+- from: Change
+  type: has_many
+  to: Item
+  via: affectedItems
+- from: Item
+  type: has_many
+  to: ManufacturerItem
+  via: AML
+- from: ManufacturerItem
+  type: belongs_to
+  to: ManufacturerPart
+  via: manufacturer part
+- from: Item
+  type: has_many
+  to: Attachment
+  via: documents
+- from: Product
+  type: has_many
+  to: VariantValue
+  via: variants
+- from: Category
+  type: has_many
+  to: Product
+  via: products
+- from: Channel
+  type: has_many
+  to: Product
+  via: products

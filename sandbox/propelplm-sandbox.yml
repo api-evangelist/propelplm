@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.propelplm.com/docs/available-apis/
+model: salesforce-sandbox
+note: Propel runs on the Salesforce Platform; there are no synthetic test cards/tokens. Testing is done
+  against a Salesforce Sandbox org (a full or partial copy of a production org). The docs recommend validating
+  all API integrations in a Sandbox before production.
+environments:
+- name: production
+  login_host: https://login.salesforce.com
+  namespace: PDLM
+  notes: Live org; orgURL subdomain e.g. NA85/EU142.
+- name: sandbox
+  login_host: https://test.salesforce.com
+  namespace: provide your dev/sandbox org namespace
+  notes: Salesforce Sandbox; OAuth authorize/token endpoints served from test.salesforce.com.

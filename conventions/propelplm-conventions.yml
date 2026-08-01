@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://api-docs.propelplm.com/ ; https://developer.propelplm.com/docs/
+authentication:
+  style: oauth2-bearer
+  detail: 'Salesforce OAuth 2.0 Connected App; Authorization: Bearer <access_token>.'
+org_addressing:
+  detail: Requests target your org host https://{orgURL}.salesforce.com where orgURL is the Salesforce
+    instance/region subdomain (e.g. NA85, EU142) or <custom>.my for a custom My Domain.
+field_namespacing:
+  detail: Custom fields are sent WITHOUT the managed-package namespace prefix — send Lifecycle_Phase__c,
+    not PDLM__Lifecycle_Phase__c. Each endpoint prepends the namespace automatically.
+content_type: application/json
+bulk:
+  detail: The separate Import API handles bulk Item/BOM/Manufacturer-Part loads; BOMs limited to 400 children
+    per call (chunk larger structures).
+idempotency:
+  supported: false
+  detail: No provider-documented idempotency-key mechanism; writes are standard Salesforce upserts keyed
+    on Item Number / record Id.
+pagination:
+  style: salesforce
+  detail: List responses follow Salesforce REST record arrays; large queries use Salesforce query locators.
+error_envelope: Salesforce Apex REST JSON error message/fields (see errors/propelplm-problem-types.yml).
+cross_reference:
+  errors: errors/propelplm-problem-types.yml
+  lifecycle: lifecycle/propelplm-lifecycle.yml
+  authentication: authentication/propelplm-authentication.yml

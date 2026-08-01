@@ -1,0 +1,2988 @@
+# Derived by API Evangelist from the provider-published Postman collection
+# generated: 2026-07-20  method: derived
+# source: https://api-docs.propelplm.com/  (Propel APIs 4.6.x and later)
+openapi: 3.0.3
+info:
+  title: Propel PLM Core REST API
+  version: '2.0'
+  description: Standard business-logic REST API for Propel PLM, running as a Salesforce Apex REST service.
+    Resource-based endpoints for the core PLM objects — Items, Bills of Material (BOM), Changes, and Attachments.
+    All requests are authenticated with a Salesforce OAuth 2.0 bearer token and execute within the permission
+    scope of the requesting user. Derived by API Evangelist from the provider-published public Postman
+    collection.
+  contact:
+    name: Propel Developer Docs
+    url: https://developer.propelplm.com/
+  license:
+    name: Proprietary
+servers:
+- url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+  description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+  variables:
+    orgURL:
+      default: NA85
+      description: Salesforce org subdomain / My Domain
+components:
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            full: Full access
+            api: API access
+            web: Web access
+            refresh_token: Obtain refresh tokens for offline access
+security:
+- salesforceOAuth: []
+paths:
+  /item/{itemNumber}:
+    get:
+      operationId: getItem
+      summary: Get Item
+      tags:
+      - Item
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PDLM__Item__c
+                  url: /services/data/v44.0/sobjects/PDLM__Item__c/a0E4P00000ojI5eUAE
+                LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                PLMCOST__Rebate__c: null
+                Opportunity__c: null
+                PLMCOST__Current_Quarter_Spend__c: 0
+                PDLM__Revision_Count__c: 11
+                Related_Request__c: null
+                PDLM__Latest_Released_Revision__c: a0D4P00001HqcVtUAJ
+                Name: 100-000345-10
+                PLMCOST__Markup_Percentage__c: null
+                PDLM__Latest_Revision__c: a0D4P00001Mxh7KUAR
+                PDLM_Inventory_c__c: null
+                PDLM__Category_Name__c: SKU - Top Level Assy
+                CreatedById: 0054P00000AO7BkQAL
+                PDLM__Has_Bom__c: true
+                PDLM__Image__c: n/a
+                PLMCOST__Standard_Cost__c: 22750.66
+                PDLM__Product__c: null
+                PDLM__Item_Revisions__r:
+                  totalSize: 11
+                  done: true
+                  records:
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001HqcVtUAJ
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: None
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: J
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001HqcVtUAJ
+                    Serial_Number__c: null
+                    PDLM__Completeness__c: null
+                    Department__c: Engineering
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 82.73
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: null
+                    PDLM__Related_Change__c: a064P00000du2cfQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: true
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: 30.18
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: 43.95
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20682.4173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:J
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AJEcmQAH
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    LastViewedDate: null
+                    PDLM__Category_Control__c: SKU - Top Level Assy
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-08-01T00:03:07.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2019-09-06T22:53:34.000+0000
+                    LastReferencedDate: null
+                    CostRollup__c: 217.613
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Latest
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2019-09-06'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tariff__c: 8.6
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxZfUAL
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: C
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxZfUAL
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    PDLM__Related_Change__c: a064P00000du2d4QAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20114.0173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:C
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: 100-000345-10:C:ECO-00107
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2016-11-29'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxZgUAL
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: B
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxZgUAL
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    PDLM__Related_Change__c: a064P00000du2d0QAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20114.0173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:B
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: 100-000345-10:B:ECO-00102
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2016-11-29'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxZiUAL
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: A
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxZiUAL
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    PDLM__Related_Change__c: a064P00000du2cvQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20114.0173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:A
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: 100-000345-10:A:ECO-00097
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2016-11-29'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxakUAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: E
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxakUAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2017-07-20T17:59:33.000+0000
+                    PDLM__Related_Change__c: a064P00000du2ccQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 19420.4673
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:E
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2017-07-13T17:21:08.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2017-07-13'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxalUAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: F
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxalUAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2017-09-22T16:23:06.000+0000
+                    PDLM__Related_Change__c: a064P00000du2dAQAQ
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20615.4673
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:F
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2017-07-20T17:59:33.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2017-07-20'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxamUAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: G
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxamUAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2017-10-24T19:34:31.000+0000
+                    PDLM__Related_Change__c: a064P00000du2dCQAQ
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 19420.4673
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:G
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2017-09-22T16:23:06.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2017-09-22'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxanUAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: D
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxanUAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2017-07-13T17:21:08.000+0000
+                    PDLM__Related_Change__c: a064P00000du2caQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 19418.0173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:D
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: 100-000345-10:D:ECO-00109
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2016-11-29T08:00:00.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2016-11-29'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxapUAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: H
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxapUAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2017-11-01T17:48:00.000+0000
+                    PDLM__Related_Change__c: a064P00000du2cdQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 19487.4173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:H
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2017-10-24T19:34:31.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2017-10-24'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001IRxb1UAD
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: null
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: I
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: false
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001IRxb1UAD
+                    Serial_Number__c: null
+                    Department__c: null
+                    PDLM__Completeness__c: null
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 5085.73
+                    PDLM__Has_Quality__c: true
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: 2019-09-06T22:53:34.000+0000
+                    PDLM__Related_Change__c: a064P00000du2ceQAA
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: 30.18
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: 43.95
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: true
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20682.4173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:I
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AO7BkQAL
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    PDLM__Category_Control__c: null
+                    LastViewedDate: null
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-06-21T23:53:09.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2017-11-01T17:48:00.000+0000
+                    LastReferencedDate: null
+                    CostRollup__c: 217.613
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Superseded
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2017-11-01'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tariff__c: 5011.6
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001Mxh7KUAR
+                    LastModifiedDate: 2019-09-06T22:54:29.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: true
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: true
+                    Height_Metric__c: null
+                    Change_Type__c: None
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    PDLM__Revision__c: Draft
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: true
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: SKU - Top Level Assy
+                    Id: a0D4P00001Mxh7KUAR
+                    Serial_Number__c: null
+                    PDLM__Completeness__c: null
+                    Department__c: Engineering
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 82.73
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: null
+                    PDLM__Related_Change__c: null
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Pending
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: 30.18
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: 43.95
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-09-06T22:54:29.000+0000
+                    Item_Number__c: 100-000345-10
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 20682.4173
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 100-000345-10:Draft*
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AJEcmQAH
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    LastViewedDate: null
+                    PDLM__Category_Control__c: SKU - Top Level Assy
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: false
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 100-000345-10
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-09-06T22:54:28.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: null
+                    LastReferencedDate: null
+                    CostRollup__c: 217.613
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Draft
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: null
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tariff__c: 8.6
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00000ojI5eUAE
+                    LastModifiedById: 0054P00000AJEcmQAH
+                IsDeleted: false
+                PDLM__Price_Book__c: null
+                PDLM__External_Image__c: null
+                PDLM__Has_Attachments__c: true
+                LastViewedDate: null
+                PDLM__Pending_Revisions__c: 1
+                PDLM__Primary_Key__c: 100-000345-10
+                PDLM__Has_Aml__c: false
+                PDLM__Revision__c: J
+                PDLM__Sharing_Rules__c: null
+                PDLM__Category__r:
+                  attributes:
+                    type: PDLM__Category__c
+                    url: /services/data/v44.0/sobjects/PDLM__Category__c/a044P00002GMxcHQAT
+                  Id: a044P00002GMxcHQAT
+                  Name: SKU - Top Level Assy
+                Standard_Cost_for_History__c: 20682.42
+                CreatedDate: 2019-06-21T23:53:09.000+0000
+                PDLM__Thumbnail__c: /sfc/servlet.shepherd/version/download/0684100000238kAAAQ
+                PDLM__Category__c: a044P00002GMxcHQAT
+                Id: a0E4P00000ojI5eUAE
+                Lifecycle__c: Parts
+                Quality_Issues__c: null
+                PDLM__Description__c: Peak 800 Backup and Disaster Recovery Device
+                PDLM__Has_Quality__c: true
+                PDLM__Thumbnail_img__c: <img src="/sfc/servlet.shepherd/version/download/0684100000238kAAAQ"
+                  alt="thumb" style="height:80px; width:80px;" border="0"/>
+                LastReferencedDate: null
+                PDLM__External_Link__c: null
+                PDLM__Name_Unique__c: 100-000345-10
+                OwnerId: 0054P00000AO7BkQAL
+                PDLM__Revisions_Draft__c: 1
+                PDLM__Has_Pending_Revision__c: true
+                PLMCOST__BOM_Cost__c: 20682.42
+                PLMCOST__Current_Quarter_Demand__c: null
+                SystemModstamp: 2019-09-06T22:54:29.000+0000
+                PDLM__Has_Open_Quality__c: true
+                LastActivityDate: null
+                PDLM__Latest_Lifecycle_Phase__c: Production
+                PDLM__Has_Parent__c: false
+                PDLM__Manufacturer_Key__c: null
+                PDLM__Autonumber__c: null
+                PDLM__On_Change_cb__c: false
+                PDLM__Owner_Name__c: Admin 3 User
+                LastModifiedById: 0054P00000AJEcmQAH
+                PDLM__On_Change__c: false
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+    put:
+      operationId: updateItem
+      summary: Update Item
+      tags:
+      - Item
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              Description__c: CAP CER 100PF 25V C0G/NP0 0201
+              Revision__c: B
+              Cost__c: 150.44
+              Custom_Date__c: 11/15/2019
+              Custom_Date_Time__c: '2019-11-14 0:00:00'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PDLM__Item__c
+                  url: /services/data/v44.0/sobjects/PDLM__Item__c/a0E4P00001L73hDUAR
+                LastModifiedDate: 2019-11-19T19:52:19.000+0000
+                PLMCOST__Rebate__c: null
+                Opportunity__c: null
+                PLMCOST__Current_Quarter_Spend__c: 0
+                PDLM__Revision_Count__c: 1
+                Related_Request__c: null
+                PDLM__Latest_Released_Revision__c: null
+                Name: 515-01007
+                PLMCOST__Markup_Percentage__c: null
+                PDLM__Latest_Revision__c: a0D4P00001MyQdKUAV
+                PDLM_Inventory_c__c: null
+                PDLM__Category_Name__c: null
+                CreatedById: 0054P00000AJEcmQAH
+                PDLM__Has_Bom__c: false
+                PDLM__Image__c: n/a
+                PLMCOST__Standard_Cost__c: 165.48
+                PDLM__Product__c: null
+                PDLM__Item_Revisions__r:
+                  totalSize: 1
+                  done: true
+                  records:
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001MyQdKUAV
+                    LastModifiedDate: 2019-11-19T19:57:07.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Initial
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: false
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: false
+                    Height_Metric__c: null
+                    Change_Type__c: None
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    Test_Date_2__c: '2019-11-13'
+                    PDLM__Revision__c: B
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: true
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: Capacitor
+                    Id: a0D4P00001MyQdKUAV
+                    Serial_Number__c: null
+                    PDLM__Completeness__c: null
+                    Department__c: Engineering
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: null
+                    PDLM__Related_Change__c: null
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: false
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Pending
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    Custom_Date__c: '2019-11-15'
+                    put_a_number_here_for_fun__c: 5
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-11-19T19:57:07.000+0000
+                    Item_Number__c: 515-01007
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Top_Tube_Length2__c: null
+                    Custom_Date_Time__c: 2019-11-14T08:00:00.000+0000
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 150.44
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 515-01007:B*
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AJEcmQAH
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    LastViewedDate: null
+                    PDLM__Category_Control__c: Capacitor
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: false
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 515-01007
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-11-14T19:02:52.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: CAP CER 100PF 25V C0G/NP0 0201
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: null
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Draft
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: null
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: 6
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Initial
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00001L73hDUAR
+                    LastModifiedById: 0054P00000AJEcmQAH
+                IsDeleted: false
+                PDLM__Price_Book__c: null
+                PDLM__External_Image__c: null
+                PDLM__Has_Attachments__c: false
+                LastViewedDate: null
+                PDLM__Pending_Revisions__c: 1
+                PDLM__Primary_Key__c: null
+                PDLM__Has_Aml__c: false
+                PDLM__Revision__c: B (Pending)
+                PDLM__Sharing_Rules__c: null
+                PDLM__Category__r:
+                  attributes:
+                    type: PDLM__Category__c
+                    url: /services/data/v44.0/sobjects/PDLM__Category__c/a044P00002GMxcLQAT
+                  Id: a044P00002GMxcLQAT
+                  Name: Capacitor
+                Standard_Cost_for_History__c: 150.44
+                CreatedDate: 2019-11-14T19:02:52.000+0000
+                PDLM__Thumbnail__c: null
+                PDLM__Category__c: a044P00002GMxcLQAT
+                Id: a0E4P00001L73hDUAR
+                Test_Date__c: '2019-11-14'
+                Lifecycle__c: Parts
+                Quality_Issues__c: null
+                PDLM__Description__c: CAP CER 100PF 25V C0G/NP0 0201
+                PDLM__Has_Quality__c: false
+                PDLM__Thumbnail_img__c: null
+                LastReferencedDate: null
+                PDLM__External_Link__c: null
+                PDLM__Name_Unique__c: 515-01007
+                OwnerId: 0054P00000AJEcmQAH
+                PDLM__Revisions_Draft__c: 0
+                PDLM__Has_Pending_Revision__c: true
+                PLMCOST__BOM_Cost__c: 150.44
+                PLMCOST__Current_Quarter_Demand__c: null
+                SystemModstamp: 2019-11-19T19:52:19.000+0000
+                PDLM__Has_Open_Quality__c: false
+                LastActivityDate: null
+                PDLM__Latest_Lifecycle_Phase__c: Initial (Pending)
+                PDLM__Has_Parent__c: false
+                PDLM__Manufacturer_Key__c: null
+                PDLM__Autonumber__c: null
+                PDLM__On_Change_cb__c: false
+                PDLM__Owner_Name__c: Master Tester
+                LastModifiedById: 0054P00000AJEcmQAH
+                PDLM__On_Change__c: false
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /item:
+    post:
+      operationId: createItem
+      summary: Create Item
+      tags:
+      - Item
+      security:
+      - salesforceOAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              category: Capacitor
+              details:
+                Description: CAP CER 100PF 25V C0G/NP0 0201
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PDLM__Item__c
+                  url: /services/data/v44.0/sobjects/PDLM__Item__c/a0E4P00001L7GhgUAF
+                LastModifiedDate: 2019-11-20T19:43:12.000+0000
+                PLMCOST__Rebate__c: null
+                Opportunity__c: null
+                PLMCOST__Current_Quarter_Spend__c: 0
+                PDLM__Revision_Count__c: 1
+                Related_Request__c: null
+                PDLM__Latest_Released_Revision__c: a0D4P00001Mz0HfUAJ
+                Name: 515-01013
+                PLMCOST__Markup_Percentage__c: null
+                PDLM__Latest_Revision__c: a0D4P00001Mz0HfUAJ
+                PDLM_Inventory_c__c: null
+                PDLM__Category_Name__c: null
+                CreatedById: 0054P00000AJEcmQAH
+                PDLM__Has_Bom__c: false
+                PDLM__Image__c: n/a
+                PLMCOST__Standard_Cost__c: 0
+                PDLM__Product__c: null
+                PDLM__Item_Revisions__r:
+                  totalSize: 1
+                  done: true
+                  records:
+                  - attributes:
+                      type: PDLM__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PDLM__Item_Revision__c/a0D4P00001Mz0HfUAJ
+                    LastModifiedDate: 2019-11-20T19:43:12.000+0000
+                    Bottom_Bracket_Height2__c: null
+                    Seat_Tube_Length__c: null
+                    PDLM__Phase_Unique__c: a0F4P00000G5M3b:Production
+                    Seat_Tube_Length2__c: null
+                    PDLM__Detailed_Description__c: null
+                    Opportunity__c: null
+                    Package__c: null
+                    Length_Std__c: null
+                    PDLM__Has_Bom__c: false
+                    Stack2__c: null
+                    Wheelbase__c: null
+                    IsDeleted: false
+                    Reach2__c: null
+                    PDLM__Has_Attachments__c: false
+                    Height_Metric__c: null
+                    Change_Type__c: None
+                    Model__c: null
+                    Chain_Stay_Length__c: null
+                    PDLM__Training_Required__c: false
+                    PDLM__Has_Aml__c: false
+                    Test_Date_2__c: null
+                    PDLM__Revision__c: A
+                    PDLM__Expired__c: false
+                    PDLM__Is_Latest__c: true
+                    PCB_Footprint__c: null
+                    PDLM__Training_Quiz__c: null
+                    PDLM__Category__c: Capacitor
+                    Id: a0D4P00001Mz0HfUAJ
+                    Serial_Number__c: null
+                    PDLM__Completeness__c: null
+                    Department__c: Engineering
+                    Lifecycle__c: Parts
+                    Tolerance__c: null
+                    Price_Adjustment__c: 1
+                    Head_Tube_Angle__c: null
+                    Total_Cost__c: 0
+                    PDLM__Has_Quality__c: false
+                    Seat_Tube_Angle2__c: null
+                    PDLM__End_Date_Time__c: null
+                    PDLM__Related_Change__c: null
+                    Reach__c: null
+                    Require_Additional_Signer_to_Sign_off__c: false
+                    Supporting_Documentation_Required__c: false
+                    PDLM__Is_Latest_Released__c: true
+                    Custom_Field2__c: null
+                    Weight_Std__c: null
+                    PDLM__Revision_Status__c: Released
+                    Height_Std__c: null
+                    PDLM__Cancelled__c: false
+                    Value__c: null
+                    Indirect_Cost__c: null
+                    Custom_Date__c: null
+                    put_a_number_here_for_fun__c: null
+                    Stack__c: null
+                    Direct_Cost__c: null
+                    Stand_Over_Height__c: null
+                    SystemModstamp: 2019-11-20T19:43:12.000+0000
+                    Item_Number__c: 515-01013
+                    PDLM__Training_Due_Date__c: null
+                    Length_Metric__c: null
+                    PDLM__Has_Open_Quality__c: false
+                    Target_Margin__c: null
+                    LastActivityDate: null
+                    Update_Prices__c: false
+                    Size__c: null
+                    Change_Percentage__c: null
+                    Top_Tube_Length__c: null
+                    PDLM__On_Change__c: false
+                    Custom_Date_Time__c: null
+                    Top_Tube_Length2__c: null
+                    Wheelbase2__c: null
+                    PDLM__Cost__c: 0
+                    Tech_Specs__c: null
+                    Project__c: null
+                    Additional_Signer__c: null
+                    Serialized__c: false
+                    Voltage__c: null
+                    Name: 515-01013:A
+                    Head_Tube_Angle2__c: null
+                    CreatedById: 0054P00000AJEcmQAH
+                    PDLM__Required_Field_Warning__c: null
+                    Author__c: null
+                    Next_Review__c: null
+                    Market_Status__c: null
+                    Stand_Over_Height2__c: null
+                    Chain_Stay_Length2__c: null
+                    Width_Std__c: null
+                    LastViewedDate: null
+                    PDLM__Category_Control__c: Capacitor
+                    PDLM__Master_Item_Name__c: null
+                    PDLM__Released__c: true
+                    Bottom_Bracket_Height__c: null
+                    PDLM__Master_Item_Number__c: 515-01013
+                    Custom_Field1__c: null
+                    CreatedDate: 2019-11-20T19:43:12.000+0000
+                    Head_Tube_Length2__c: null
+                    PDLM__PrimaryKey__c: null
+                    PDLM__Description__c: CAP CER 100PF 25V C0G/NP0 0201
+                    Last_Review__c: null
+                    PDLM__ProductCode__c: null
+                    Width_Metric__c: null
+                    PDLM__Rebaseline_Draft__c: null
+                    PDLM__Released_Date_Time__c: 2019-11-20T19:43:12.000+0000
+                    CostRollup__c: null
+                    LastReferencedDate: null
+                    PDLM__Effective_Date1__c: null
+                    Density__c: null
+                    PDLM__Base_SKU__c: null
+                    Resistance__c: null
+                    Head_Tube_Length__c: null
+                    PDLM__Latest__c: Latest
+                    Navigation_Category__c: null
+                    Weight_Metric__c: null
+                    Currency__c: null
+                    PDLM__Released_Date__c: '2019-11-20'
+                    Suggested_List_Price__c: null
+                    Reason_for_Change__c: null
+                    Brand__c: null
+                    put_a_number_here_just_because__c: null
+                    Publication_Site__c: null
+                    PDLM__Lifecycle_Phase__c: Production
+                    PDLM__Aml_Count__c: 0
+                    Document_Owner__c: null
+                    Tariff__c: null
+                    Seat_Tube_Angle__c: null
+                    PDLM__Has_Parent__c: false
+                    Tech_Specs2__c: <img src=" " alt="Image" style="height:400px; width:400px;" border="0"/>
+                    PDLM__Master_Item__c: a0E4P00001L7GhgUAF
+                    LastModifiedById: 0054P00000AJEcmQAH
+                IsDeleted: false
+                PDLM__Price_Book__c: null
+                PDLM__External_Image__c: null
+                PDLM__Has_Attachments__c: false
+                LastViewedDate: null
+                PDLM__Pending_Revisions__c: 0
+                PDLM__Primary_Key__c: null
+                PDLM__Has_Aml__c: false
+                PDLM__Revision__c: A
+                PDLM__Sharing_Rules__c: null
+                PDLM__Category__r:
+                  attributes:
+                    type: PDLM__Category__c
+                    url: /services/data/v44.0/sobjects/PDLM__Category__c/a044P00002GMxcLQAT
+                  Id: a044P00002GMxcLQAT
+                  Name: Capacitor
+                Standard_Cost_for_History__c: 0
+                CreatedDate: 2019-11-20T19:43:12.000+0000
+                PDLM__Thumbnail__c: null
+                PDLM__Category__c: a044P00002GMxcLQAT
+                Id: a0E4P00001L7GhgUAF
+                Test_Date__c: null
+                Lifecycle__c: Parts
+                Quality_Issues__c: null
+                PDLM__Description__c: CAP CER 100PF 25V C0G/NP0 0201
+                PDLM__Has_Quality__c: false
+                PDLM__Thumbnail_img__c: null
+                LastReferencedDate: null
+                PDLM__External_Link__c: null
+                PDLM__Name_Unique__c: 515-01013
+                OwnerId: 0054P00000AJEcmQAH
+                PDLM__Revisions_Draft__c: 0
+                PDLM__Has_Pending_Revision__c: false
+                PLMCOST__BOM_Cost__c: 0
+                PLMCOST__Current_Quarter_Demand__c: null
+                SystemModstamp: 2019-11-20T19:43:12.000+0000
+                PDLM__Has_Open_Quality__c: false
+                LastActivityDate: null
+                PDLM__Latest_Lifecycle_Phase__c: Production
+                PDLM__Has_Parent__c: false
+                PDLM__Manufacturer_Key__c: null
+                PDLM__Autonumber__c: null
+                PDLM__On_Change_cb__c: false
+                PDLM__Owner_Name__c: Master Tester
+                LastModifiedById: 0054P00000AJEcmQAH
+                PDLM__On_Change__c: false
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /bom/{itemNumber}:
+    get:
+      operationId: getBom
+      summary: Get BOM
+      tags:
+      - Bom
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - attributes:
+                  type: PLMJ__Manufacturer_Item__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000002GfIDEA0
+                PLMJ__Allocation__c: 100
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Include_In_Cost_Rollup__c: false
+                PLMJ__Manufacturer_Part__r:
+                  attributes:
+                    type: PLMJ__Manufacturer_Part__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000001bYX6EAM
+                  PLMJ__Manufacturer__c: 0014600000ValYAAAZ
+                  PLMJ__Manufacturer__r:
+                    attributes:
+                      type: Account
+                      url: /services/data/v44.0/sobjects/Account/0014600000ValYAAAZ
+                    Id: 0014600000ValYAAAZ
+                    Name: United Oil & Gas Corp.
+                  Id: a0G46000001bYX6EAM
+                  Name: ABC-123
+                PLMJ__Manufacturer_Name__c: United Oil & Gas Corp.
+                PLMJ__Distributor_Name__c: null
+                PLMJ__Manufacturer_Part_Name__c: ABC-123
+                PLMJ__Use_Cost__c: false
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0F46000002GfIDEA0
+                Id: a0F46000002GfIDEA0
+                PLMJ__Manufacturer_Part__c: a0G46000001bYX6EAM
+                PLMJ__Use_Cost_Allocation__c: 100
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WHAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: mLUxR0E97EKVu4vlaNed
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj2EAC
+                    Id: a0C4p000002Vjj2EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj2EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Oc5qEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVKAEA4
+                  Name: 100-0002
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVKAEA4
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a0146000006742u
+                PLMJ__Item__c: a0D46000003Oc5qEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Oc5qEAC-mLUxR0E97EKVu4vlaNed
+                Id: a0146000006h9WHAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVKAEA4
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Oc5qEAC
+                  PLMJ__Related_Change__c: a0546000005bVTDAA2
+                  Name: 100-0002:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2
+                    Id: a0546000005bVTDAA2
+                    Name: ECO00011
+                  PLMJ__Master_Item__c: a0D46000003Oc5qEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVKAEA4
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:39:37.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WGAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 0AuYUx07Z1S77AA97wSO
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj3EAC
+                    Id: a0C4p000002Vjj3EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj3EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003OwytEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVK0EAO
+                  Name: 100-0003
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVK0EAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a0146000006748c
+                PLMJ__Item__c: a0D46000003OwytEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003OwytEAC-0AuYUx07Z1S77AA97wSO
+                Id: a0146000006h9WGAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVK0EAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003OwytEAC
+                  PLMJ__Related_Change__c: a0546000005bVSyAAM
+                  Name: 100-0003:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVSyAAM
+                    Id: a0546000005bVSyAAM
+                    Name: ECO00010
+                  PLMJ__Master_Item__c: a0D46000003OwytEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVK0EAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:30:39.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WIAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 6ZhyvZZhploYdCK896TL
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj4EAC
+                    Id: a0C4p000002Vjj4EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj4EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Ox6xEAC
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVSiEAO
+                  Name: 100-0004
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVSiEAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a01460000067492
+                PLMJ__Item__c: a0D46000003Ox6xEAC
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Ox6xEAC-6ZhyvZZhploYdCK896TL
+                Id: a0146000006h9WIAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSiEAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Ox6xEAC
+                  PLMJ__Related_Change__c: a0546000005bVTDAA2
+                  Name: 100-0004:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2
+                    Id: a0546000005bVTDAA2
+                    Name: ECO00011
+                  PLMJ__Master_Item__c: a0D46000003Ox6xEAC
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVSiEAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:39:37.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WKAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: iYQI9nWQj8zbaZxjYP93
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO
+                    PLMJ__Related_Change__c: a0546000005bVTNAA2
+                    Id: a0C46000001ZVSsEAO
+                    PLMJ__Released__c: true
+                  PLMJ__Latest_Revision__c: a0C46000001ZVSsEAO
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003Ox7MEAS
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZVSsEAO
+                  Name: 100-0005
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZVSsEAO
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: false
+                Name: a014600000674yC
+                PLMJ__Item__c: a0D46000003Ox7MEAS
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003Ox7MEAS-iYQI9nWQj8zbaZxjYP93
+                Id: a0146000006h9WKAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003Ox7MEAS
+                  PLMJ__Related_Change__c: a0546000005bVTNAA2
+                  Name: 100-0005:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTNAA2
+                    Id: a0546000005bVTNAA2
+                    Name: ECO00012
+                  PLMJ__Master_Item__c: a0D46000003Ox7MEAS
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZVSsEAO
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-03T01:47:09.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WJAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: 0J1dsp5IwgFd86R1nj84
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG
+                    PLMJ__Related_Change__c: a0546000005bW5BAAU
+                    Id: a0C46000001ZW2wEAG
+                    PLMJ__Released__c: true
+                  PLMJ__Latest_Revision__c: a0C46000001ZW2wEAG
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003PFnNEAW
+                  PLMJ__Latest_Released_Revision__c: a0C46000001ZW2wEAG
+                  Name: 100-0006
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001ZW2wEAG
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: false
+                Name: a014600000674yR
+                PLMJ__Item__c: a0D46000003PFnNEAW
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003PFnNEAW-0J1dsp5IwgFd86R1nj84
+                Id: a0146000006h9WJAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG
+                  PLMJ__Has_Aml__c: false
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003PFnNEAW
+                  PLMJ__Related_Change__c: a0546000005bW5BAAU
+                  Name: 100-0006:A
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bW5BAAU
+                    Id: a0546000005bW5BAAU
+                    Name: ECO00013
+                  PLMJ__Master_Item__c: a0D46000003PFnNEAW
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001ZW2wEAG
+                  PLMJ__Revision__c: A
+                  PLMJ__Released_Date_Time__c: 2018-02-05T17:55:47.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Assembly__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WLAAY
+                PLMJ__Parent_Item__c: a0D46000000qGk5
+                PLMJ__Find_Number__c: 0
+                PLMJ__Secondary_Unique_Key__c: Y0GYjmQglZQRnIc9kd21
+                PLMJ__Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4
+                  PLMJ__Category__c: a0346000001Xk9FAAS
+                  PLMJ__Latest_Revision__r:
+                    attributes:
+                      type: PLMJ__Item_Revision__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj5EAC
+                    Id: a0C4p000002Vjj5EAC
+                    PLMJ__Released__c: false
+                  PLMJ__Latest_Revision__c: a0C4p000002Vjj5EAC
+                  PLMJ__Category__r:
+                    attributes:
+                      type: PLMJ__Category__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                    PLMJ__Lifecycle__c: a0E46000000ApFFEA0
+                    PLMJ__Lifecycle__r:
+                      attributes:
+                        type: PLMJ__Lifecycle__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0
+                      Id: a0E46000000ApFFEA0
+                      Name: Procured Part
+                    Id: a0346000001Xk9FAAS
+                    Name: Assembly
+                  PLMJ__Latest_Lifecycle_Phase__c: Production
+                  Id: a0D46000003PKJTEA4
+                  PLMJ__Latest_Released_Revision__c: a0C46000001V0siEAC
+                  Name: 100-0007
+                PLMJ__Item_Revision__c: a0C46000001ZbxdEAC
+                PLMJ__Level__c: 1
+                PLMJ__Fixed_Child_Revision__c: a0C46000001V0siEAC
+                PLMJ__Replaced_Assembly__c: null
+                PLMJ__Has_Draft__c: true
+                Name: a01460000067Aqg
+                PLMJ__Item__c: a0D46000003PKJTEA4
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC
+                  PLMJ__Master_Item__c: a0D46000000qGk5EAE
+                  PLMJ__Master_Item_Number__c: 100-0001
+                  Id: a0C46000001ZbxdEAC
+                  Name: 100-0001:M
+                PLMJ__Notes__c: null
+                PLMJ__Designators__c: null
+                PLMJ__ParentUniqueGridId__c: null
+                PLMJ__UniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21
+                Id: a0146000006h9WLAAY
+                PLMJ__Fixed_Child_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001V0siEAC
+                  PLMJ__Has_Aml__c: true
+                  PLMJ__Has_Attachments__c: false
+                  PLMJ__Master_Item__r:
+                    attributes:
+                      type: PLMJ__Item__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4
+                    PLMJ__Category__c: a0346000001Xk9FAAS
+                    PLMJ__Category__r:
+                      attributes:
+                        type: PLMJ__Category__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS
+                      Id: a0346000001Xk9FAAS
+                    Id: a0D46000003PKJTEA4
+                  PLMJ__Related_Change__c: a0546000006JHZiAAO
+                  Name: 100-0007:B
+                  PLMJ__Related_Change__r:
+                    attributes:
+                      type: PLMJ__Change__c
+                      url: /services/data/v44.0/sobjects/PLMJ__Change__c/a0546000006JHZiAAO
+                    Id: a0546000006JHZiAAO
+                    Name: ECO00030
+                  PLMJ__Master_Item__c: a0D46000003PKJTEA4
+                  PLMJ__Has_Bom__c: false
+                  Id: a0C46000001V0siEAC
+                  PLMJ__Revision__c: B
+                  PLMJ__Released_Date_Time__c: 2018-03-21T17:29:16.000+0000
+                  PLMJ__Released__c: true
+                  PLMJ__Lifecycle_Phase__c: Production
+                PLMJ__Quantity__c: 1
+              - attributes:
+                  type: PLMJ__Manufacturer_Item__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000001LEiwEAG
+                PLMJ__Allocation__c: 100
+                PLMJ__Parent_Item__c: a0D46000003PKJT
+                PLMJ__Item_Revision__c: a0C46000001V0siEAC
+                PLMJ__Include_In_Cost_Rollup__c: false
+                PLMJ__Manufacturer_Part__r:
+                  attributes:
+                    type: PLMJ__Manufacturer_Part__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000002uZ2bEAE
+                  PLMJ__Manufacturer__c: 0014600000ValY9AAJ
+                  PLMJ__Manufacturer__r:
+                    attributes:
+                      type: Account
+                      url: /services/data/v44.0/sobjects/Account/0014600000ValY9AAJ
+                    Id: 0014600000ValY9AAJ
+                    Name: Grand Hotels & Resorts Ltd
+                  PLMJ__Part_Costs__r:
+                    totalSize: 6
+                    done: true
+                    records:
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002TlFMAA0
+                      PLMJ__Cost__c: 50
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-03-21'
+                      Id: a0k46000002TlFMAA0
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbaXAAS
+                      PLMJ__Cost__c: 55
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbaXAAS
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbacAAC
+                      PLMJ__Cost__c: 50
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbacAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbahAAC
+                      PLMJ__Cost__c: 51
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbahAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbcTAAS
+                      PLMJ__Cost__c: 51.5
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-06'
+                      Id: a0k46000002UbcTAAS
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                    - attributes:
+                        type: PLMJ__Part_Cost__c
+                        url: /services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002Um0fAAC
+                      PLMJ__Cost__c: 51
+                      PLMJ__Cost_Type__c: Cost
+                      PLMJ__Cost_Date__c: '2018-04-08'
+                      Id: a0k46000002Um0fAAC
+                      PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                  Id: a0G46000002uZ2bEAE
+                  Name: ABCDEFG
+                PLMJ__Manufacturer_Name__c: Grand Hotels & Resorts Ltd
+                PLMJ__Distributor_Name__c: null
+                PLMJ__Manufacturer_Part_Name__c: ABCDEFG
+                PLMJ__Use_Cost__c: false
+                PLMJ__ParentUniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21
+                PLMJ__UniqueGridId__c: a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21,a0F46000001LEiwEAG
+                Id: a0F46000001LEiwEAG
+                PLMJ__Manufacturer_Part__c: a0G46000002uZ2bEAE
+                PLMJ__Use_Cost_Allocation__c: 100
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+    put:
+      operationId: updateBom
+      summary: Update BOM
+      tags:
+      - Bom
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              bomList:
+              - name: 600-00009
+                quantity: 5
+              - name: 600-00010
+                quantity: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PLMJ__Item_Revision__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2
+                PLMJ__Cancelled__c: false
+                PLMJ__ProductCode__c: null
+                LastModifiedDate: 2019-07-16T20:02:00.000+0000
+                PLMJ__Has_Attachments__c: false
+                PLMJ__Description__c: null
+                PLMJ__Has_Quality__c: false
+                PLMJ__Revision_Status__c: Pending
+                PLMJ__Detailed_Description__c: null
+                PLMJ__Training_Quiz__c: null
+                Name: 100-00030:01*
+                PLMJ__Release_Number__c: null
+                CreatedById: 005460000013ZT8AAM
+                PLMJ__Master_Item_Name__c: null
+                PLMJ__Custom_Picklist__c: Value 1
+                PLMJ__Custom_Field__c: null
+                PLMJ__Released__c: false
+                PLMJ__Test__c: null
+                PLMJ__Has_Aml__c: false
+                IsDeleted: false
+                CreatedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Test_Rich_Text__c: null
+                PLMJ__Released_Date__c: '2019-07-16'
+                LastViewedDate: null
+                PLMJ__Assembly_Only_Field__c: null
+                PLMJ__Required_Field_Warning__c: null
+                PLMJ__Capacitance__c: null
+                CreatedDate: 2019-04-05T21:15:24.000+0000
+                PLMJ__Rebaseline_Draft__c: null
+                PLMJ__Is_Latest_Released__c: false
+                PLMJ__Test_field__c: null
+                Id: a0C46000002aKDHEA2
+                PLMJ__Quiz__c: null
+                PLMJ__Is_Latest__c: true
+                PLMJ__Effective_Date1__c: null
+                LastModifiedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Related_Change__c: null
+                PLMJ__Cost__c: 0
+                PLMJ__Latest__c: Draft
+                PLMJ__Category_Control__c: Assembly
+                LastReferencedDate: null
+                PLMJ__Category__c: Assembly
+                PLMJ__Training_Required__c: false
+                PLMJ__Has_Parent__c: false
+                PLMJ__Phase_Unique__c: a0E46000000ApFF:Initial
+                PLMJ__Base_SKU__c: null
+                PLMJ__Jayson_s_Test__c: null
+                PLMJ__My_new_field__c: false
+                PLMJ__Revision__c: '01'
+                PLMJ__Completeness__c: null
+                PLMJ__PrimaryKey__c: null
+                PLMJ__Lifecycle_Phase__c: Initial
+                PLMJ__test1234__c: null
+                PLMJ__Master_Item__r:
+                  attributes:
+                    type: PLMJ__Item__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000005h6g7EAA
+                  Id: a0D46000005h6g7EAA
+                  Name: 100-00030
+                PLMJ__Testing_Testing__c: null
+                PLMJ__Training_Due_Date__c: null
+                PLMJ__Expired__c: false
+                PLMJ__Testing_Number_field__c: null
+                PLMJ__On_Change__c: false
+                PLMJ__Aml_Count__c: 0
+                PLMJ__Master_Item_Number__c: 100-00030
+                PLMJ__Has_Open_Quality__c: false
+                SystemModstamp: 2019-07-16T20:02:00.000+0000
+                PLMJ__Has_Bom__c: true
+                PLMJ__Master_Item__c: a0D46000005h6g7EAA
+                PLMJ__test_test_test__c: null
+                LastActivityDate: null
+                LastModifiedById: 005460000013ZT8AAM
+                PLMJ__End_Date_Time__c: null
+                PLMJ__Released_Date_Time__c: 2019-07-16T19:13:43.000+0000
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /change:
+    post:
+      operationId: createChange
+      summary: Create Change
+      tags:
+      - Change
+      security:
+      - salesforceOAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              categoryName: ECO
+              itemNames:
+              - 100-00030
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /change/{itemNumber}:
+    get:
+      operationId: getChangeOrder
+      summary: Get Change (Release Package)
+      tags:
+      - Change
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: itemNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Item Number or record Id
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error
+  /attachment:
+    post:
+      operationId: uploadAttachment
+      summary: Upload Attachment
+      tags:
+      - Attachment
+      security:
+      - salesforceOAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              itemName: 100-00030
+              objectName: Item__c
+              link: https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052
+              docName: 3d Model in Onshape
+              description: Link to Onshape 3d Model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                attributes:
+                  type: PLMJ__Document__c
+                  url: /services/data/v44.0/sobjects/PLMJ__Document__c/a094600000530J8AAI
+                LastModifiedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                LastModifiedDate: 2019-07-20T19:21:02.000+0000
+                PLMJ__SKU_Grid_Id__c: null
+                Owner:
+                  attributes:
+                    type: Name
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Item_Revision_Key__c: null
+                PLMJ__Item_Revision__c: a0C46000002aKDHEA2
+                PLMJ__Google_File_Id__c: null
+                LastReferencedDate: null
+                Name: datasheet.pdf
+                PLMJ__Content_Location__c: S
+                PLMJ__Document_Title__c: Datasheet for GRM0335C1H101JA01_
+                CreatedById: 005460000013ZT8AAM
+                OwnerId: 005460000013ZT8AAM
+                PLMJ__External_Attachment_URL__c: null
+                PLMJ__URL_Unique__c: null
+                PLMJ__Primary_Key__c: null
+                PLMJ__Moxtra_Binder__c: null
+                PLMJ__Document_Version_Download__c: sfc/servlet.shepherd/version/download/06846000003yATXAA2?asPdf=false&operationContext=CHATTER
+                PLMJ__Content_Id__c: 06946000003l2zmAAA
+                IsDeleted: false
+                CreatedBy:
+                  attributes:
+                    type: User
+                    url: /services/data/v44.0/sobjects/User/005460000013ZT8AAM
+                  Id: 005460000013ZT8AAM
+                  Name: Jayson Kadlecek
+                PLMJ__Has_Redlines__c: false
+                LastViewedDate: null
+                PLMJ__SKU__c: null
+                PLMJ__Last_Modified_Date__c: 2019-07-20T19:21:02.000+0000
+                PLMJ__Checked_Out_User_Name__c: null
+                SystemModstamp: 2019-07-20T19:21:02.000+0000
+                PLMJ__Check_Out_Date_Time__c: null
+                PLMJ__Thumbnail__c: <img src="/sfc/servlet.shepherd/version/renditionDownload/?rendition=THUMB120BY90&amp;versionId=06846000003yATXAA2"
+                  alt="-" border="0"/>
+                PLMJ__Document_Version__c: 06846000003yATXAA2
+                PLMJ__Item_Revision__r:
+                  attributes:
+                    type: PLMJ__Item_Revision__c
+                    url: /services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2
+                  Id: a0C46000002aKDHEA2
+                  Name: 100-00030:01*
+                PLMJ__File_Extension__c: pdf
+                PLMJ__Check_Out_User__c: null
+                PLMJ__Primary_Attachment__c: false
+                PLMJ__Version_Number__c: '1'
+                CreatedDate: 2019-07-20T19:21:02.000+0000
+                PLMJ__Document_Size__c: 823071
+                PLMJ__GridId__c: 06846000003yATXAA2
+                Id: a094600000530J8AAI
+                LastModifiedById: 005460000013ZT8AAM
+                PLMJ__Preview_All_Versions__c: 06946000003l2zmAAA
+        '400':
+          description: Bad request — invalid payload or field
+        '401':
+          description: Unauthorized — missing or invalid OAuth bearer token
+        '404':
+          description: Not found — the requested record does not exist
+        '500':
+          description: Salesforce Apex REST internal error

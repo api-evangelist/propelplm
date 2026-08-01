@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+source: https://www.propelsoftware.com/trust
+url: https://www.propelsoftware.com/trust
+certifications:
+- SOC 2
+- ISO 27001
+- FedRAMP
+- GDPR
+evidence:
+- source: https://www.propelsoftware.com/trust
+  keywords:
+  - soc 2
+  - soc2
+  - iso 27001
+  - fedramp
+  - trust center
+  - gdpr

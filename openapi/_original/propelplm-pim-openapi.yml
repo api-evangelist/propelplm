@@ -1,0 +1,808 @@
+# Derived by API Evangelist from the provider-published PIM Postman collection
+# generated: 2026-07-20  method: derived  source: https://github.com/propelplm/OpenAPI
+openapi: 3.0.3
+info:
+  title: Propel PIM API
+  version: '1.0'
+  description: Read API for Propel Product Information Management (PIM) — retrieve published product,
+    variant, category, channel, and digital-asset data for downstream commerce and marketing channels.
+    Derived by API Evangelist from the provider-published PIM Postman collection.
+  contact:
+    name: Propel Developer Docs
+    url: https://developer.propelplm.com/
+servers:
+- url: '{pimBaseUrl}/api/v1'
+  variables:
+    pimBaseUrl:
+      default: https://pim.propelsoftware.com
+      description: Propel PIM base URL for your org
+components:
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: API access
+security:
+- salesforceOAuth: []
+paths:
+  /products/{productId}:
+    get:
+      operationId: getProductInfo
+      summary: Get Product Info
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/variants:
+    get:
+      operationId: getProductVariantValue
+      summary: Get Product Variant Value
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/attributes:
+    get:
+      operationId: getProductSAttributeAll
+      summary: Get Product's Attribute All
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/attributes/{primaryKey}:
+    get:
+      operationId: getProductSAttributeOne
+      summary: Get Product's Attribute One
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: primaryKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                labelId: <string>
+                label: <string>
+                type: <string>
+                valueId: <string>
+                value: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                variantValue:
+                  id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /products/{productId}/assets:
+    get:
+      operationId: getProductSAssets
+      summary: Get Product's Assets
+      tags:
+      - products
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /categories:
+    get:
+      operationId: getAllCategroies
+      summary: Get All Categroies
+      tags:
+      - categories
+      security:
+      - salesforceOAuth: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+              - id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /categories/{categoryId}:
+    get:
+      operationId: getCategoryInfo
+      summary: Get Category Info
+      tags:
+      - categories
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /categories/{categoryId}/products:
+    get:
+      operationId: getCategorySProducts
+      summary: Get Category's Products
+      tags:
+      - categories
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+              - id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /channels:
+    get:
+      operationId: getAllChannels
+      summary: Get All Channels
+      tags:
+      - channels
+      security:
+      - salesforceOAuth: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+              - id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /channels/{channelId}:
+    get:
+      operationId: getChannelInfo
+      summary: Get Channel Info
+      tags:
+      - channels
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: channelId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                categoryId: <string>
+                classification: <string>
+                parentId: <string>
+                isPrimary: <boolean>
+                productList:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                subcategories:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /channels/{channelId}/products:
+    get:
+      operationId: getChannelSProducts
+      summary: Get Channel's Products
+      tags:
+      - channels
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: channelId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+              - id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+              - id: <string>
+                name: <string>
+                category:
+                  id: <string>
+                  name: <string>
+                channels:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                variants:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+                attributes:
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                - status: <string>
+                  product_weight: <number>
+                  battery_size: <string>
+                assets:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}:
+    get:
+      operationId: getVariantValueInfo
+      summary: Get Variant Value Info
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/attributes:
+    get:
+      operationId: getVariantValueSAttributeAll
+      summary: Get Variant Value's Attribute All
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/attributes/{primaryKey}:
+    get:
+      operationId: getVariantValueSAttributeOne
+      summary: Get Variant Value's Attribute One
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: primaryKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                labelId: <string>
+                label: <string>
+                type: <string>
+                valueId: <string>
+                value: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                variantValue:
+                  id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /variants/{variantValueId}/assets:
+    get:
+      operationId: getVariantValueSAssets
+      summary: Get Variant Value's Assets
+      tags:
+      - variants
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: variantValueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                label: <string>
+                parentProduct:
+                  id: <string>
+                  name: <string>
+                parentVariantValue:
+                  id: <string>
+                  name: <string>
+                childVariantValues:
+                - id: <string>
+                  name: <string>
+                - id: <string>
+                  name: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+  /assets/{assetId}:
+    get:
+      operationId: getAssetInfo
+      summary: Get Asset Info
+      tags:
+      - assets
+      security:
+      - salesforceOAuth: []
+      parameters:
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                id: <string>
+                name: <string>
+                fileURL: <string>
+                fileType: <string>
+                fileSize: <number>
+                category:
+                  id: <string>
+                  name: <string>
+                assetRelationships:
+                - valueId: <string>
+                  linkedRecordName: <string>
+                  linkedRecordId: <string>
+                  labelName: <string>
+                  labelId: <string>
+                - valueId: <string>
+                  linkedRecordName: <string>
+                  linkedRecordId: <string>
+                  labelName: <string>
+                  labelId: <string>
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found

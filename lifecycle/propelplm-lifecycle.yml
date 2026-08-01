@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.propelplm.com/docs/available-apis/ ; https://status.propelsoftware.com/
+versioning:
+  scheme: uri-path
+  current: v2
+  notes: Core REST resources under /api/v2; Change Release Package under /api/v3. Product release train
+    tracked as 4.6.x and later.
+  docs: https://developer.propelplm.com/docs/available-apis/
+status_page: https://status.propelsoftware.com/
+platform: Salesforce Platform (three annual Salesforce releases; Propel packaged releases follow the 4.x
+  train).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published RFC 8594 Sunset/Deprecation header policy found; API versions coexist under distinct
+    URI paths (v2/v3).
+deprecated_operations: []

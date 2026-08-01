@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+format: salesforce-apex-rest
+source: Derived from Propel OpenAPI 4xx/5xx responses + Salesforce Apex REST error semantics
+note: Propel runs on Salesforce Apex REST; errors are returned as JSON with Salesforce error messages/fields
+  (not RFC 9457 problem+json). HTTP status codes follow standard Salesforce REST conventions.
+problems:
+- status: 400
+  title: Bad Request
+  detail: Invalid payload, malformed field, or a field sent with its namespace prefix (send Field__c,
+    not PDLM__Field__c).
+- status: 401
+  title: Unauthorized
+  detail: Missing, expired, or invalid Salesforce OAuth 2.0 bearer token.
+- status: 403
+  title: Forbidden
+  detail: Requesting user lacks Salesforce object/field permissions for the operation.
+- status: 404
+  title: Not Found
+  detail: The requested Item / BOM / Change / Attachment record does not exist or is not visible to the
+    user.
+- status: 405
+  title: Method Not Allowed
+  detail: HTTP method not supported on this Apex REST resource.
+- status: 500
+  title: Internal Server Error
+  detail: Salesforce Apex REST runtime error (governor limits, trigger/validation-rule failure, or unhandled
+    exception).
