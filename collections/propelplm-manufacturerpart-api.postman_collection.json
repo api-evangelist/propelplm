@@ -1,0 +1,501 @@
+{
+  "item": [
+    {
+      "id": "baaf17b1-623b-4cc6-8d2c-053efde6419b",
+      "name": "ManufacturerPart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "471f004a-3d74-4726-8078-a316d7c32c66",
+          "name": "Create new Manufacturer Part(s)",
+          "request": {
+            "name": "Create new Manufacturer Part(s)",
+            "description": {},
+            "url": {
+              "path": [
+                "ManufacturerPart",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addAML\": [\n    {\n      \"manufacturer\": \"<string>\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"<string>\"\n    },\n    {\n      \"manufacturer\": \"<string>\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c733c82-ee1d-4f1e-b523-4d13cd75096c",
+              "name": "Successfully created new Manufacturer Part(s)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addAML\": [\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    },\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"type\": \"PDLM__Manufacturer_Part__c\",\n    \"url\": \"string\"\n  },\n  \"Name\": \"MPN-12345\",\n  \"Id\": \"string\",\n  \"PDLM__Manufacturer__c\": \"string\",\n  \"PDLM__Distributor__c\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a12dbe04-5ec0-430b-a6e4-16d35b5470e0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addAML\": [\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    },\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Missing mpn or invalid manufacturer/distributor. No parts created.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18505291-2a98-411c-af46-984b2d84f130",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addAML\": [\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    },\n    {\n      \"manufacturer\": \"United Gas & Oil\",\n      \"mpn\": \"<string>\",\n      \"distributor\": \"GenePoint\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Missing mpn or invalid manufacturer/distributor. No parts created.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dc120fd-e962-45ad-9340-92a40cbac1a1",
+          "name": "Fetch a Manufacturer Part",
+          "request": {
+            "name": "Fetch a Manufacturer Part",
+            "description": {},
+            "url": {
+              "path": [
+                "ManufacturerPart",
+                ":MfrPartId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "MfrPartId",
+                  "description": "(Required) The Salesforce record id of the Manufacturer Part"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9db82d6-21d7-4f14-b3d5-a8c64c740978",
+              "name": "The Manufacturer Part corresponding to the provided `MfrPartId`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ":MfrPartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "MfrPartId",
+                      "description": "(Required) The Salesforce record id of the Manufacturer Part"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"type\": \"PDLM__Manufacturer_Part__c\",\n    \"url\": \"string\"\n  },\n  \"Name\": \"MPN-12345\",\n  \"Id\": \"string\",\n  \"PDLM__Manufacturer__c\": \"string\",\n  \"PDLM__Distributor__c\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80157bc3-7541-4cfd-bff9-59ce25892c02",
+              "name": "No Manufacturer Part found for the provided `MfrPartId`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ":MfrPartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "MfrPartId",
+                      "description": "(Required) The Salesforce record id of the Manufacturer Part"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Missing mpn or invalid manufacturer/distributor. No parts created.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cbe3cda-4e54-47e2-82b1-7fa28d8d66aa",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ManufacturerPart",
+                    ":MfrPartId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "MfrPartId",
+                      "description": "(Required) The Salesforce record id of the Manufacturer Part"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Missing mpn or invalid manufacturer/distributor. No parts created.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3c8ac4dc-ae82-485a-bb20-84efc21aa9ee",
+    "name": "Get Bom Assembly ManufacturerPart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

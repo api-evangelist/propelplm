@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly markup API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "markup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get markup information of a item revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item/:itemRevId/markup",
+            "params": [
+              {
+                "name": "itemRevId",
+                "value": "",
+                "type": "path",
+                "description": "Id of desired Item Revision."
+              },
+              {
+                "name": "fieldset",
+                "value": "",
+                "type": "query",
+                "description": "Fieldset to use for diffing instead of the default fields"
+              }
+            ]
+          },
+          "docs": "Gets all the fields that the specified item revision has changed against the latest released revision of an item. Returns"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "1a4b41a8-b4e2-4c4a-989c-9cbded916492",
+      "name": "channels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2798fec-81b4-4a24-a924-76765aa65484",
+          "name": "Get All Channels",
+          "request": {
+            "name": "Get All Channels",
+            "description": {},
+            "url": {
+              "path": [
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ab6227fa-013e-456f-ac01-1a3ab334968c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"classification\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"isPrimary\": \"<boolean>\",\n    \"productList\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"subcategories\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"classification\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"isPrimary\": \"<boolean>\",\n    \"productList\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"subcategories\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34273d4c-6fe4-4453-bbbd-2b0226ff96fa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea7a1b46-f835-4752-95b4-b6b56e64d92b",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b88346-2a90-4757-bcf1-967f7b820eff",
+          "name": "Get Channel Info",
+          "request": {
+            "name": "Get Channel Info",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":channelId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d5c896f8-308e-4008-880c-4edae66d144a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"categoryId\": \"<string>\",\n  \"classification\": \"<string>\",\n  \"parentId\": \"<string>\",\n  \"isPrimary\": \"<boolean>\",\n  \"productList\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"subcategories\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f939f1e-33ca-4ce1-b64e-8f00d5658bbe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cae11181-2864-4489-828d-835b555c426d",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce0e3752-24e7-47c8-b8d8-4a6c3ca1114c",
+          "name": "Get Channel's Products",
+          "request": {
+            "name": "Get Channel's Products",
+            "description": {},
+            "url": {
+              "path": [
+                "channels",
+                ":channelId",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d2fb3c37-7ecf-4ef2-95f8-6bc6ed64f6d8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"category\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"channels\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"variants\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"attributes\": [\n      {\n        \"status\": \"<string>\",\n        \"product_weight\": \"<number>\",\n        \"battery_size\": \"<string>\"\n      },\n      {\n        \"status\": \"<string>\",\n        \"product_weight\": \"<number>\",\n        \"battery_size\": \"<string>\"\n      }\n    ],\n    \"assets\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"category\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"channels\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"variants\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"attributes\": [\n      {\n        \"status\": \"<string>\",\n        \"product_weight\": \"<number>\",\n        \"battery_size\": \"<string>\"\n      },\n      {\n        \"status\": \"<string>\",\n        \"product_weight\": \"<number>\",\n        \"battery_size\": \"<string>\"\n      }\n    ],\n    \"assets\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1e3f894-50dd-4fd1-b0de-2d074064166e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "980253e7-880d-4e25-96c8-cd7a6fc1edd1",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channelId",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d07f7f9c-ab53-4c13-a530-b0f0a19554a6",
+    "name": "Get Bom Assembly channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

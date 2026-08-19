@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "b983803c-77e7-41a9-a6ee-fcffad5ba17d",
+      "name": "Assembly",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c04e0e73-65e1-48e1-ab3b-e90dd3f8dcf7",
+          "name": "BOM",
+          "request": {
+            "name": "BOM",
+            "description": {
+              "content": "Query to return a list of assembly records which represent the full BOM for the given Item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "item",
+                ":itemNumber",
+                "bom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "all",
+                  "description": "Level of BOM to fetch. Defaults to All levels. Accepts 'all' or '1', '2', '3', etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "delta",
+                  "value": "false",
+                  "description": "Returns the deltas in the BOM between the latest released revision and previous revision in addition to the BOM."
+                },
+                {
+                  "disabled": false,
+                  "key": "flatten",
+                  "value": "false",
+                  "description": "Returns a list of parts in the assembly without level. Will combine duplicate BOM rows that exist at different levels into a single BOM row."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemNumber",
+                  "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89ecea60-29bf-49b6-b1ca-fd297c220854",
+              "name": "Bill of Materials for a specified Item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemNumber",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "all"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "false"
+                    },
+                    {
+                      "key": "flatten",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"returnBom\": [\n    {\n      \"assemblies\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"manufacturerItems\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    },\n    {\n      \"assemblies\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"manufacturerItems\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"deltaBom\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df20013e-2557-4d1e-ba86-cfb9b0ac3e97",
+              "name": "Change Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemNumber",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "all"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "false"
+                    },
+                    {
+                      "key": "flatten",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9339,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3367f666-b492-4e76-bf13-abd0d2941f4a",
+    "name": "Get Bom Assembly API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

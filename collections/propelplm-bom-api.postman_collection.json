@@ -1,0 +1,935 @@
+{
+  "item": [
+    {
+      "id": "6007a90b-96fd-43b2-a01c-ef550a698b6d",
+      "name": "BOM",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3327a5b6-5961-454d-8dba-e9336ede0807",
+          "name": "BOM",
+          "request": {
+            "name": "BOM",
+            "description": {
+              "content": "Query to return a list of assembly records which represent the full BOM for the given Item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "item",
+                ":itemNumber",
+                "bom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "all",
+                  "description": "Level of BOM to fetch. Defaults to All levels. Accepts 'all' or '1', '2', '3', etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "delta",
+                  "value": "false",
+                  "description": "Returns the deltas in the BOM between the latest released revision and previous revision in addition to the BOM."
+                },
+                {
+                  "disabled": false,
+                  "key": "flatten",
+                  "value": "false",
+                  "description": "Returns a list of parts in the assembly without level. Will combine duplicate BOM rows that exist at different levels into a single BOM row."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemNumber",
+                  "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b1fb251-814f-47bd-a853-d8859f2babb8",
+              "name": "Bill of Materials for a specified Item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemNumber",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "all"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "false"
+                    },
+                    {
+                      "key": "flatten",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"returnBom\": [\n    {\n      \"assemblies\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"manufacturerItems\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    },\n    {\n      \"assemblies\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"manufacturerItems\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"deltaBom\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "618d8b5f-5a02-4db9-8832-1dbc3fbfdc4e",
+              "name": "Change Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemNumber",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "all"
+                    },
+                    {
+                      "key": "delta",
+                      "value": "false"
+                    },
+                    {
+                      "key": "flatten",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2729,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b1061b7-cdea-4482-a349-93e4069201a8",
+          "name": "Get BOM",
+          "request": {
+            "name": "Get BOM",
+            "description": {},
+            "url": {
+              "path": [
+                "bom",
+                ":itemNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemNumber",
+                  "description": "(Required) Item Number or record Id"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "bab05d50-8ced-42bf-98a1-0cda1119e688",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Manufacturer_Item__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000002GfIDEA0\"\n    },\n    \"PLMJ__Allocation__c\": 100,\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Include_In_Cost_Rollup__c\": false,\n    \"PLMJ__Manufacturer_Part__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Manufacturer_Part__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000001bYX6EAM\"\n      },\n      \"PLMJ__Manufacturer__c\": \"0014600000ValYAAAZ\",\n      \"PLMJ__Manufacturer__r\": {\n        \"attributes\": {\n          \"type\": \"Account\",\n          \"url\": \"/services/data/v44.0/sobjects/Account/0014600000ValYAAAZ\"\n        },\n        \"Id\": \"0014600000ValYAAAZ\",\n        \"Name\": \"United Oil & Gas Corp.\"\n      },\n      \"Id\": \"a0G46000001bYX6EAM\",\n      \"Name\": \"ABC-123\"\n    },\n    \"PLMJ__Manufacturer_Name__c\": \"United Oil & Gas Corp.\",\n    \"PLMJ__Distributor_Name__c\": null,\n    \"PLMJ__Manufacturer_Part_Name__c\": \"ABC-123\",\n    \"PLMJ__Use_Cost__c\": false,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0F46000002GfIDEA0\",\n    \"Id\": \"a0F46000002GfIDEA0\",\n    \"PLMJ__Manufacturer_Part__c\": \"a0G46000001bYX6EAM\",\n    \"PLMJ__Use_Cost_Allocation__c\": 100\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WHAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"mLUxR0E97EKVu4vlaNed\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj2EAC\"\n        },\n        \"Id\": \"a0C4p000002Vjj2EAC\",\n        \"PLMJ__Released__c\": false\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C4p000002Vjj2EAC\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003Oc5qEAC\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001ZVKAEA4\",\n      \"Name\": \"100-0002\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001ZVKAEA4\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": true,\n    \"Name\": \"a0146000006742u\",\n    \"PLMJ__Item__c\": \"a0D46000003Oc5qEAC\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003Oc5qEAC-mLUxR0E97EKVu4vlaNed\",\n    \"Id\": \"a0146000006h9WHAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVKAEA4\"\n      },\n      \"PLMJ__Has_Aml__c\": false,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Oc5qEAC\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003Oc5qEAC\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000005bVTDAA2\",\n      \"Name\": \"100-0002:A\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2\"\n        },\n        \"Id\": \"a0546000005bVTDAA2\",\n        \"Name\": \"ECO00011\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003Oc5qEAC\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001ZVKAEA4\",\n      \"PLMJ__Revision__c\": \"A\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-02-03T01:39:37.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WGAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"0AuYUx07Z1S77AA97wSO\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj3EAC\"\n        },\n        \"Id\": \"a0C4p000002Vjj3EAC\",\n        \"PLMJ__Released__c\": false\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C4p000002Vjj3EAC\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003OwytEAC\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001ZVK0EAO\",\n      \"Name\": \"100-0003\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001ZVK0EAO\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": true,\n    \"Name\": \"a0146000006748c\",\n    \"PLMJ__Item__c\": \"a0D46000003OwytEAC\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003OwytEAC-0AuYUx07Z1S77AA97wSO\",\n    \"Id\": \"a0146000006h9WGAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVK0EAO\"\n      },\n      \"PLMJ__Has_Aml__c\": false,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003OwytEAC\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003OwytEAC\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000005bVSyAAM\",\n      \"Name\": \"100-0003:A\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVSyAAM\"\n        },\n        \"Id\": \"a0546000005bVSyAAM\",\n        \"Name\": \"ECO00010\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003OwytEAC\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001ZVK0EAO\",\n      \"PLMJ__Revision__c\": \"A\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-02-03T01:30:39.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WIAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"6ZhyvZZhploYdCK896TL\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj4EAC\"\n        },\n        \"Id\": \"a0C4p000002Vjj4EAC\",\n        \"PLMJ__Released__c\": false\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C4p000002Vjj4EAC\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003Ox6xEAC\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001ZVSiEAO\",\n      \"Name\": \"100-0004\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001ZVSiEAO\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": true,\n    \"Name\": \"a01460000067492\",\n    \"PLMJ__Item__c\": \"a0D46000003Ox6xEAC\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003Ox6xEAC-6ZhyvZZhploYdCK896TL\",\n    \"Id\": \"a0146000006h9WIAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSiEAO\"\n      },\n      \"PLMJ__Has_Aml__c\": false,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox6xEAC\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003Ox6xEAC\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000005bVTDAA2\",\n      \"Name\": \"100-0004:A\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTDAA2\"\n        },\n        \"Id\": \"a0546000005bVTDAA2\",\n        \"Name\": \"ECO00011\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003Ox6xEAC\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001ZVSiEAO\",\n      \"PLMJ__Revision__c\": \"A\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-02-03T01:39:37.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WKAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"iYQI9nWQj8zbaZxjYP93\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO\"\n        },\n        \"PLMJ__Related_Change__c\": \"a0546000005bVTNAA2\",\n        \"Id\": \"a0C46000001ZVSsEAO\",\n        \"PLMJ__Released__c\": true\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C46000001ZVSsEAO\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003Ox7MEAS\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001ZVSsEAO\",\n      \"Name\": \"100-0005\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001ZVSsEAO\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": false,\n    \"Name\": \"a014600000674yC\",\n    \"PLMJ__Item__c\": \"a0D46000003Ox7MEAS\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003Ox7MEAS-iYQI9nWQj8zbaZxjYP93\",\n    \"Id\": \"a0146000006h9WKAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZVSsEAO\"\n      },\n      \"PLMJ__Has_Aml__c\": false,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003Ox7MEAS\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003Ox7MEAS\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000005bVTNAA2\",\n      \"Name\": \"100-0005:A\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bVTNAA2\"\n        },\n        \"Id\": \"a0546000005bVTNAA2\",\n        \"Name\": \"ECO00012\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003Ox7MEAS\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001ZVSsEAO\",\n      \"PLMJ__Revision__c\": \"A\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-02-03T01:47:09.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WJAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"0J1dsp5IwgFd86R1nj84\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG\"\n        },\n        \"PLMJ__Related_Change__c\": \"a0546000005bW5BAAU\",\n        \"Id\": \"a0C46000001ZW2wEAG\",\n        \"PLMJ__Released__c\": true\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C46000001ZW2wEAG\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003PFnNEAW\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001ZW2wEAG\",\n      \"Name\": \"100-0006\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001ZW2wEAG\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": false,\n    \"Name\": \"a014600000674yR\",\n    \"PLMJ__Item__c\": \"a0D46000003PFnNEAW\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003PFnNEAW-0J1dsp5IwgFd86R1nj84\",\n    \"Id\": \"a0146000006h9WJAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZW2wEAG\"\n      },\n      \"PLMJ__Has_Aml__c\": false,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PFnNEAW\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003PFnNEAW\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000005bW5BAAU\",\n      \"Name\": \"100-0006:A\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000005bW5BAAU\"\n        },\n        \"Id\": \"a0546000005bW5BAAU\",\n        \"Name\": \"ECO00013\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003PFnNEAW\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001ZW2wEAG\",\n      \"PLMJ__Revision__c\": \"A\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-02-05T17:55:47.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Assembly__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Assembly__c/a0146000006h9WLAAY\"\n    },\n    \"PLMJ__Parent_Item__c\": \"a0D46000000qGk5\",\n    \"PLMJ__Find_Number__c\": 0,\n    \"PLMJ__Secondary_Unique_Key__c\": \"Y0GYjmQglZQRnIc9kd21\",\n    \"PLMJ__Item__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4\"\n      },\n      \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n      \"PLMJ__Latest_Revision__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item_Revision__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C4p000002Vjj5EAC\"\n        },\n        \"Id\": \"a0C4p000002Vjj5EAC\",\n        \"PLMJ__Released__c\": false\n      },\n      \"PLMJ__Latest_Revision__c\": \"a0C4p000002Vjj5EAC\",\n      \"PLMJ__Category__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Category__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n        },\n        \"PLMJ__Lifecycle__c\": \"a0E46000000ApFFEA0\",\n        \"PLMJ__Lifecycle__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Lifecycle__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Lifecycle__c/a0E46000000ApFFEA0\"\n          },\n          \"Id\": \"a0E46000000ApFFEA0\",\n          \"Name\": \"Procured Part\"\n        },\n        \"Id\": \"a0346000001Xk9FAAS\",\n        \"Name\": \"Assembly\"\n      },\n      \"PLMJ__Latest_Lifecycle_Phase__c\": \"Production\",\n      \"Id\": \"a0D46000003PKJTEA4\",\n      \"PLMJ__Latest_Released_Revision__c\": \"a0C46000001V0siEAC\",\n      \"Name\": \"100-0007\"\n    },\n    \"PLMJ__Item_Revision__c\": \"a0C46000001ZbxdEAC\",\n    \"PLMJ__Level__c\": 1,\n    \"PLMJ__Fixed_Child_Revision__c\": \"a0C46000001V0siEAC\",\n    \"PLMJ__Replaced_Assembly__c\": null,\n    \"PLMJ__Has_Draft__c\": true,\n    \"Name\": \"a01460000067Aqg\",\n    \"PLMJ__Item__c\": \"a0D46000003PKJTEA4\",\n    \"PLMJ__Item_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001ZbxdEAC\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000000qGk5EAE\",\n      \"PLMJ__Master_Item_Number__c\": \"100-0001\",\n      \"Id\": \"a0C46000001ZbxdEAC\",\n      \"Name\": \"100-0001:M\"\n    },\n    \"PLMJ__Notes__c\": null,\n    \"PLMJ__Designators__c\": null,\n    \"PLMJ__ParentUniqueGridId__c\": null,\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21\",\n    \"Id\": \"a0146000006h9WLAAY\",\n    \"PLMJ__Fixed_Child_Revision__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Item_Revision__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000001V0siEAC\"\n      },\n      \"PLMJ__Has_Aml__c\": true,\n      \"PLMJ__Has_Attachments__c\": false,\n      \"PLMJ__Master_Item__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Item__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000003PKJTEA4\"\n        },\n        \"PLMJ__Category__c\": \"a0346000001Xk9FAAS\",\n        \"PLMJ__Category__r\": {\n          \"attributes\": {\n            \"type\": \"PLMJ__Category__c\",\n            \"url\": \"/services/data/v44.0/sobjects/PLMJ__Category__c/a0346000001Xk9FAAS\"\n          },\n          \"Id\": \"a0346000001Xk9FAAS\"\n        },\n        \"Id\": \"a0D46000003PKJTEA4\"\n      },\n      \"PLMJ__Related_Change__c\": \"a0546000006JHZiAAO\",\n      \"Name\": \"100-0007:B\",\n      \"PLMJ__Related_Change__r\": {\n        \"attributes\": {\n          \"type\": \"PLMJ__Change__c\",\n          \"url\": \"/services/data/v44.0/sobjects/PLMJ__Change__c/a0546000006JHZiAAO\"\n        },\n        \"Id\": \"a0546000006JHZiAAO\",\n        \"Name\": \"ECO00030\"\n      },\n      \"PLMJ__Master_Item__c\": \"a0D46000003PKJTEA4\",\n      \"PLMJ__Has_Bom__c\": false,\n      \"Id\": \"a0C46000001V0siEAC\",\n      \"PLMJ__Revision__c\": \"B\",\n      \"PLMJ__Released_Date_Time__c\": \"2018-03-21T17:29:16.000+0000\",\n      \"PLMJ__Released__c\": true,\n      \"PLMJ__Lifecycle_Phase__c\": \"Production\"\n    },\n    \"PLMJ__Quantity__c\": 1\n  },\n  {\n    \"attributes\": {\n      \"type\": \"PLMJ__Manufacturer_Item__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Manufacturer_Item__c/a0F46000001LEiwEAG\"\n    },\n    \"PLMJ__Allocation__c\": 100,\n    \"PLMJ__Parent_Item__c\": \"a0D46000003PKJT\",\n    \"PLMJ__Item_Revision__c\": \"a0C46000001V0siEAC\",\n    \"PLMJ__Include_In_Cost_Rollup__c\": false,\n    \"PLMJ__Manufacturer_Part__r\": {\n      \"attributes\": {\n        \"type\": \"PLMJ__Manufacturer_Part__c\",\n        \"url\": \"/services/data/v44.0/sobjects/PLMJ__Manufacturer_Part__c/a0G46000002uZ2bEAE\"\n      },\n      \"PLMJ__Manufacturer__c\": \"0014600000ValY9AAJ\",\n      \"PLMJ__Manufacturer__r\": {\n        \"attributes\": {\n          \"type\": \"Account\",\n          \"url\": \"/services/data/v44.0/sobjects/Account/0014600000ValY9AAJ\"\n        },\n        \"Id\": \"0014600000ValY9AAJ\",\n        \"Name\": \"Grand Hotels & Resorts Ltd\"\n      },\n      \"PLMJ__Part_Costs__r\": {\n        \"totalSize\": 6,\n        \"done\": true,\n        \"records\": [\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002TlFMAA0\"\n            },\n            \"PLMJ__Cost__c\": 50,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-03-21\",\n            \"Id\": \"a0k46000002TlFMAA0\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          },\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbaXAAS\"\n            },\n            \"PLMJ__Cost__c\": 55,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-04-06\",\n            \"Id\": \"a0k46000002UbaXAAS\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          },\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbacAAC\"\n            },\n            \"PLMJ__Cost__c\": 50,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-04-06\",\n            \"Id\": \"a0k46000002UbacAAC\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          },\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbahAAC\"\n            },\n            \"PLMJ__Cost__c\": 51,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-04-06\",\n            \"Id\": \"a0k46000002UbahAAC\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          },\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002UbcTAAS\"\n            },\n            \"PLMJ__Cost__c\": 51.5,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-04-06\",\n            \"Id\": \"a0k46000002UbcTAAS\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          },\n          {\n            \"attributes\": {\n              \"type\": \"PLMJ__Part_Cost__c\",\n              \"url\": \"/services/data/v44.0/sobjects/PLMJ__Part_Cost__c/a0k46000002Um0fAAC\"\n            },\n            \"PLMJ__Cost__c\": 51,\n            \"PLMJ__Cost_Type__c\": \"Cost\",\n            \"PLMJ__Cost_Date__c\": \"2018-04-08\",\n            \"Id\": \"a0k46000002Um0fAAC\",\n            \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\"\n          }\n        ]\n      },\n      \"Id\": \"a0G46000002uZ2bEAE\",\n      \"Name\": \"ABCDEFG\"\n    },\n    \"PLMJ__Manufacturer_Name__c\": \"Grand Hotels & Resorts Ltd\",\n    \"PLMJ__Distributor_Name__c\": null,\n    \"PLMJ__Manufacturer_Part_Name__c\": \"ABCDEFG\",\n    \"PLMJ__Use_Cost__c\": false,\n    \"PLMJ__ParentUniqueGridId__c\": \"a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21\",\n    \"PLMJ__UniqueGridId__c\": \"a0D46000003PKJTEA4-Y0GYjmQglZQRnIc9kd21,a0F46000001LEiwEAG\",\n    \"Id\": \"a0F46000001LEiwEAG\",\n    \"PLMJ__Manufacturer_Part__c\": \"a0G46000002uZ2bEAE\",\n    \"PLMJ__Use_Cost_Allocation__c\": 100\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dde7956-70ed-4023-bbb7-fd4bb9bf5b77",
+              "name": "Bad request — invalid payload or field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8eed95df-a2a1-4138-935f-339583c85e16",
+              "name": "Unauthorized — missing or invalid OAuth bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e642fa3d-7395-4e68-a3b3-0dbd0da770b6",
+              "name": "Not found — the requested record does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "982c47fe-2cea-4d93-a416-c8f9ced224fb",
+              "name": "Salesforce Apex REST internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e17330bf-8376-4042-b629-4a88f065df04",
+          "name": "Update BOM",
+          "request": {
+            "name": "Update BOM",
+            "description": {},
+            "url": {
+              "path": [
+                "bom",
+                ":itemNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemNumber",
+                  "description": "(Required) Item Number or record Id"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "902887bf-18d8-4121-8829-37ea282618d7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"type\": \"PLMJ__Item_Revision__c\",\n    \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2\"\n  },\n  \"PLMJ__Cancelled__c\": false,\n  \"PLMJ__ProductCode__c\": null,\n  \"LastModifiedDate\": \"2019-07-16T20:02:00.000+0000\",\n  \"PLMJ__Has_Attachments__c\": false,\n  \"PLMJ__Description__c\": null,\n  \"PLMJ__Has_Quality__c\": false,\n  \"PLMJ__Revision_Status__c\": \"Pending\",\n  \"PLMJ__Detailed_Description__c\": null,\n  \"PLMJ__Training_Quiz__c\": null,\n  \"Name\": \"100-00030:01*\",\n  \"PLMJ__Release_Number__c\": null,\n  \"CreatedById\": \"005460000013ZT8AAM\",\n  \"PLMJ__Master_Item_Name__c\": null,\n  \"PLMJ__Custom_Picklist__c\": \"Value 1\",\n  \"PLMJ__Custom_Field__c\": null,\n  \"PLMJ__Released__c\": false,\n  \"PLMJ__Test__c\": null,\n  \"PLMJ__Has_Aml__c\": false,\n  \"IsDeleted\": false,\n  \"CreatedBy\": {\n    \"attributes\": {\n      \"type\": \"User\",\n      \"url\": \"/services/data/v44.0/sobjects/User/005460000013ZT8AAM\"\n    },\n    \"Id\": \"005460000013ZT8AAM\",\n    \"Name\": \"Jayson Kadlecek\"\n  },\n  \"PLMJ__Test_Rich_Text__c\": null,\n  \"PLMJ__Released_Date__c\": \"2019-07-16\",\n  \"LastViewedDate\": null,\n  \"PLMJ__Assembly_Only_Field__c\": null,\n  \"PLMJ__Required_Field_Warning__c\": null,\n  \"PLMJ__Capacitance__c\": null,\n  \"CreatedDate\": \"2019-04-05T21:15:24.000+0000\",\n  \"PLMJ__Rebaseline_Draft__c\": null,\n  \"PLMJ__Is_Latest_Released__c\": false,\n  \"PLMJ__Test_field__c\": null,\n  \"Id\": \"a0C46000002aKDHEA2\",\n  \"PLMJ__Quiz__c\": null,\n  \"PLMJ__Is_Latest__c\": true,\n  \"PLMJ__Effective_Date1__c\": null,\n  \"LastModifiedBy\": {\n    \"attributes\": {\n      \"type\": \"User\",\n      \"url\": \"/services/data/v44.0/sobjects/User/005460000013ZT8AAM\"\n    },\n    \"Id\": \"005460000013ZT8AAM\",\n    \"Name\": \"Jayson Kadlecek\"\n  },\n  \"PLMJ__Related_Change__c\": null,\n  \"PLMJ__Cost__c\": 0,\n  \"PLMJ__Latest__c\": \"Draft\",\n  \"PLMJ__Category_Control__c\": \"Assembly\",\n  \"LastReferencedDate\": null,\n  \"PLMJ__Category__c\": \"Assembly\",\n  \"PLMJ__Training_Required__c\": false,\n  \"PLMJ__Has_Parent__c\": false,\n  \"PLMJ__Phase_Unique__c\": \"a0E46000000ApFF:Initial\",\n  \"PLMJ__Base_SKU__c\": null,\n  \"PLMJ__Jayson_s_Test__c\": null,\n  \"PLMJ__My_new_field__c\": false,\n  \"PLMJ__Revision__c\": \"01\",\n  \"PLMJ__Completeness__c\": null,\n  \"PLMJ__PrimaryKey__c\": null,\n  \"PLMJ__Lifecycle_Phase__c\": \"Initial\",\n  \"PLMJ__test1234__c\": null,\n  \"PLMJ__Master_Item__r\": {\n    \"attributes\": {\n      \"type\": \"PLMJ__Item__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item__c/a0D46000005h6g7EAA\"\n    },\n    \"Id\": \"a0D46000005h6g7EAA\",\n    \"Name\": \"100-00030\"\n  },\n  \"PLMJ__Testing_Testing__c\": null,\n  \"PLMJ__Training_Due_Date__c\": null,\n  \"PLMJ__Expired__c\": false,\n  \"PLMJ__Testing_Number_field__c\": null,\n  \"PLMJ__On_Change__c\": false,\n  \"PLMJ__Aml_Count__c\": 0,\n  \"PLMJ__Master_Item_Number__c\": \"100-00030\",\n  \"PLMJ__Has_Open_Quality__c\": false,\n  \"SystemModstamp\": \"2019-07-16T20:02:00.000+0000\",\n  \"PLMJ__Has_Bom__c\": true,\n  \"PLMJ__Master_Item__c\": \"a0D46000005h6g7EAA\",\n  \"PLMJ__test_test_test__c\": null,\n  \"LastActivityDate\": null,\n  \"LastModifiedById\": \"005460000013ZT8AAM\",\n  \"PLMJ__End_Date_Time__c\": null,\n  \"PLMJ__Released_Date_Time__c\": \"2019-07-16T19:13:43.000+0000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1289084-30b5-4d09-bc90-7fe7d2a8cbe2",
+              "name": "Bad request — invalid payload or field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0320dc3-64b5-4156-a92a-bf9510ace72d",
+              "name": "Unauthorized — missing or invalid OAuth bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7e54e19-5b6c-446d-9c71-47f0f34ea16e",
+              "name": "Not found — the requested record does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e53f7f2-092d-4ff5-84ad-a4357c62d1cb",
+              "name": "Salesforce Apex REST internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bom",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bomList\": [\n    {\n      \"name\": \"600-00009\",\n      \"quantity\": 5\n    },\n    {\n      \"name\": \"600-00010\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "72d5d43e-eb62-45c7-9d8d-808aa5066a45",
+    "name": "Get Assembly BOM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "item": [
+    {
+      "id": "021e0550-8406-452e-b7db-80c68f087893",
+      "name": "Configuration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc29aad5-1fc0-43ed-8ddb-7a92129ca804",
+          "name": "Upsert a new configuration. A configuration is a custom setting or metadata within the package, the former being keyed by the 'Name' field whilst the latter on the 'Label' field.",
+          "request": {
+            "name": "Upsert a new configuration. A configuration is a custom setting or metadata within the package, the former being keyed by the 'Name' field whilst the latter on the 'Label' field.",
+            "description": {},
+            "url": {
+              "path": [
+                "configuration",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Name\": \"<string>\",\n  \"Access_Token__c\": \"<string>\",\n  \"Client_Id__c\": \"<string>\",\n  \"Client_Secret__c\": \"<string>\",\n  \"Drafts_Folder_Id__c\": \"<string>\",\n  \"In_Review_Folder_Id__c\": \"<string>\",\n  \"Refresh_Token__c\": \"<string>\",\n  \"Released_Folder_Id__c\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5a255e9-1b94-47dd-8005-93fe22c43560",
+              "name": "Successfully created new Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Name\": \"GoogleDrive\",\n  \"Access_Token__c\": \"<string>\",\n  \"Client_Id__c\": \"<string>\",\n  \"Client_Secret__c\": \"<string>\",\n  \"Drafts_Folder_Id__c\": \"<string>\",\n  \"In_Review_Folder_Id__c\": \"<string>\",\n  \"Refresh_Token__c\": \"<string>\",\n  \"Released_Folder_Id__c\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Name\": \"GoogleDrive\",\n  \"Access_Token__c\": \"<string>\",\n  \"Client_Id__c\": \"<string>\",\n  \"Client_Secret__c\": \"<string>\",\n  \"Drafts_Folder_Id__c\": \"<string>\",\n  \"In_Review_Folder_Id__c\": \"<string>\",\n  \"Refresh_Token__c\": \"<string>\",\n  \"Released_Folder_Id__c\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d35d167-ad37-4881-a82b-8ab5fbec5f44",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Name\": \"GoogleDrive\",\n  \"Access_Token__c\": \"<string>\",\n  \"Client_Id__c\": \"<string>\",\n  \"Client_Secret__c\": \"<string>\",\n  \"Drafts_Folder_Id__c\": \"<string>\",\n  \"In_Review_Folder_Id__c\": \"<string>\",\n  \"Refresh_Token__c\": \"<string>\",\n  \"Released_Folder_Id__c\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Request body malformed.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1e3ae8d-17c4-424f-9f6b-cab4b95e41ad",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Name\": \"GoogleDrive\",\n  \"Access_Token__c\": \"<string>\",\n  \"Client_Id__c\": \"<string>\",\n  \"Client_Secret__c\": \"<string>\",\n  \"Drafts_Folder_Id__c\": \"<string>\",\n  \"In_Review_Folder_Id__c\": \"<string>\",\n  \"Refresh_Token__c\": \"<string>\",\n  \"Released_Folder_Id__c\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Request body malformed.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a779d497-5a01-4a5c-9b76-329a72cb26b4",
+    "name": "Get Bom Assembly Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

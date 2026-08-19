@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly ManufacturerItem API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ManufacturerItem",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create new Manufacturer Item(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/ManufacturerItem/:ItemId",
+            "params": [
+              {
+                "name": "ItemId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record id of the Item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Manufacturer Item(s)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

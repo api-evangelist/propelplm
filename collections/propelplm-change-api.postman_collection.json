@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "c29f0f67-6575-4fbb-b736-d57f16f721ec",
+      "name": "change",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "adb1553c-4c82-40be-b73c-f14af5636586",
+          "name": "Update Change Order",
+          "request": {
+            "name": "Update Change Order",
+            "description": {
+              "content": "Update existing change order to add/remove a list of affected items and update change detail fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "change",
+                ":changeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "forceAdd",
+                  "value": "false",
+                  "description": "Force add any affected items that are currently on an existing change, by removing them from the previous change prior to adding."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "changeId",
+                  "description": "(Required) Change Id or Change Number"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addAffectedItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeAffectedItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"PDLM__Description__c\": \"<string>\",\n    \"Custom_Field__c\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c67fcfd7-2d20-4b03-9acd-e00d505079ae",
+              "name": "Updated change order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":changeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceAdd",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "changeId",
+                      "description": "(Required) Change Id or Change Number"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addAffectedItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeAffectedItems\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"details\": {\n    \"PDLM__Description__c\": \"<string>\",\n    \"Custom_Field__c\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": 7933,\n  \"Name\": \"string\",\n  \"Custom_Field__c\": \"string\",\n  \"affectedItems\": [\n    {\n      \"Id\": \"string\",\n      \"Name\": \"string\",\n      \"Custom_Field__c\": \"string\"\n    },\n    {\n      \"Id\": \"string\",\n      \"Name\": \"string\",\n      \"Custom_Field__c\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72adf681-1f43-4209-9314-2b4250d1841e",
+          "name": "Change (Release Package)",
+          "request": {
+            "name": "Change (Release Package)",
+            "description": {
+              "content": "Get a change order's details along with related information such as Affected Items, Bills of Materials, Approved Manufacturers Lists, and Attachments. This endpoint is useful for integrations with downstream systems such as ERP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "change",
+                ":changeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "affectedItems",
+                  "value": "false",
+                  "description": "Include affected items including details fields and costing information."
+                },
+                {
+                  "disabled": false,
+                  "key": "bom",
+                  "value": "false",
+                  "description": "Include the BOM for each affected item in the payload, only includes the first level. affectedItems parameter must be true."
+                },
+                {
+                  "disabled": false,
+                  "key": "amls",
+                  "value": "false",
+                  "description": "Include AMLs for each affected item in the payload. affectedItems parameter must be true."
+                },
+                {
+                  "disabled": false,
+                  "key": "attachments",
+                  "value": "false",
+                  "description": "Include information about Change attachments. If affectedItems is true, Item attachments will also be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "useXMLexportFieldset",
+                  "value": "false",
+                  "description": "Use the XML Export field set to determine which fields will be returned in the response. Default is false to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "0",
+                  "description": "Used to limit the number of affected items included in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number to provide if number of affected items exceeds limit provided or Propel limit of 1000"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "changeId",
+                  "description": "(Required) Change Id Or Change Number"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb050fdc-e980-4db3-b8f6-420b7f6fb6ea",
+              "name": "Change Order details fields. Optionally includes Affected Item, BOM, and AML data for downstream system integrations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":changeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "affectedItems",
+                      "value": "false"
+                    },
+                    {
+                      "key": "bom",
+                      "value": "false"
+                    },
+                    {
+                      "key": "amls",
+                      "value": "false"
+                    },
+                    {
+                      "key": "attachments",
+                      "value": "false"
+                    },
+                    {
+                      "key": "useXMLexportFieldset",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "changeId",
+                      "description": "(Required) Change Id Or Change Number"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": 8667,\n  \"Name\": \"string\",\n  \"affectedItems\": [\n    {\n      \"Id\": \"string\",\n      \"Name\": \"string\",\n      \"Custom_Field__c\": \"string\",\n      \"bom\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"aml\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\",\n          \"attachments\": [\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\",\n          \"attachments\": [\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"PDLM__Document_Version__c\": \"string\",\n          \"PDLM__External_Attachment_URL__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"PDLM__Document_Version__c\": \"string\",\n          \"PDLM__External_Attachment_URL__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    },\n    {\n      \"Id\": \"string\",\n      \"Name\": \"string\",\n      \"Custom_Field__c\": \"string\",\n      \"bom\": [\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"Id\": \"string\",\n          \"PDLM__Item_Number__c\": \"string\",\n          \"PDLM__Level__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ],\n      \"aml\": [\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\",\n          \"attachments\": [\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"Id\": \"string\",\n          \"Name\": \"string\",\n          \"PDLM__Manufacturer__c\": \"string\",\n          \"PDLM__Manufacturer_Name__c\": \"string\",\n          \"PDLM__Primary_Key__c\": \"string\",\n          \"Custom_Field__c\": \"string\",\n          \"attachments\": [\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"Id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentDocumentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ContentSize\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"IsLatest\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"Title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"VersionNumber\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"attachments\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"PDLM__Document_Version__c\": \"string\",\n          \"PDLM__External_Attachment_URL__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"PDLM__Document_Version__c\": \"string\",\n          \"PDLM__External_Attachment_URL__c\": \"string\",\n          \"Custom_Field__c\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"attachments\": [\n    {\n      \"Id\": \"string\",\n      \"ContentDocumentId\": \"string\",\n      \"ContentSize\": 9065.649676277466,\n      \"IsLatest\": false,\n      \"Title\": \"string\",\n      \"VersionNumber\": 4372.171387918889\n    },\n    {\n      \"Id\": \"string\",\n      \"ContentDocumentId\": \"string\",\n      \"ContentSize\": 7944.258914009202,\n      \"IsLatest\": true,\n      \"Title\": \"string\",\n      \"VersionNumber\": 2684.2162477268316\n    }\n  ],\n  \"next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8bafd46-5f4b-4b80-9c54-b71eae1190d9",
+              "name": "Change Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":changeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "affectedItems",
+                      "value": "false"
+                    },
+                    {
+                      "key": "bom",
+                      "value": "false"
+                    },
+                    {
+                      "key": "amls",
+                      "value": "false"
+                    },
+                    {
+                      "key": "attachments",
+                      "value": "false"
+                    },
+                    {
+                      "key": "useXMLexportFieldset",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "changeId",
+                      "description": "(Required) Change Id Or Change Number"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3333,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7471229c-f1f5-4b69-9ba0-0da8f77368fa",
+          "name": "Create Change",
+          "request": {
+            "name": "Create Change",
+            "description": {},
+            "url": {
+              "path": [
+                "change"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7602035-a29c-4118-8c91-51fccdada1db",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54c038bd-49e0-449f-9aab-5fa16087374f",
+              "name": "Bad request — invalid payload or field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da8f06db-9cb1-4dc8-98f5-a0ab7eefe0c4",
+              "name": "Unauthorized — missing or invalid OAuth bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f21a68ee-4bca-4f3b-afef-38eadbaaedb7",
+              "name": "Not found — the requested record does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90b71fbd-a119-4fc2-9ba0-b0bb28f87868",
+              "name": "Salesforce Apex REST internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryName\": \"ECO\",\n  \"itemNames\": [\n    \"100-00030\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae90eda2-e5b9-40c7-ad75-8d15f933b20a",
+          "name": "Get Change (Release Package)",
+          "request": {
+            "name": "Get Change (Release Package)",
+            "description": {},
+            "url": {
+              "path": [
+                "change",
+                ":itemNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemNumber",
+                  "description": "(Required) Item Number or record Id"
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a586408a-2e57-4c0b-9bc6-878dcfe81777",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee81facf-8c26-437b-ad8a-6da3435e3ece",
+              "name": "Bad request — invalid payload or field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2185d60-7b52-4220-bcf1-bcc0d3161f01",
+              "name": "Unauthorized — missing or invalid OAuth bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8acc335-e08a-4bef-bfa4-e53a9398e344",
+              "name": "Not found — the requested record does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "607965c3-ec35-464c-a52c-ae4df7a5ec87",
+              "name": "Salesforce Apex REST internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "change",
+                    ":itemNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemNumber",
+                      "description": "(Required) Item Number or record Id"
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "00aade01-e8b9-48f5-b572-b0118e46377c",
+    "name": "Get Bom Assembly change API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

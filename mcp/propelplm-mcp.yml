@@ -45,3 +45,9 @@ tools:
 - name: get_category_products
   description: List products in a PIM category
   source_operation: openapi/propelplm-pim-openapi.yml#getCategorySProducts
+deployment:
+  mode: none
+  verified: derived
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census

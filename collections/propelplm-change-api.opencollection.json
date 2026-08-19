@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly change API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "change",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Change (Release Package)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/change/:changeId",
+            "params": [
+              {
+                "name": "changeId",
+                "value": "",
+                "type": "path",
+                "description": "Change Id Or Change Number"
+              },
+              {
+                "name": "affectedItems",
+                "value": "",
+                "type": "query",
+                "description": "Include affected items including details fields and costing information."
+              },
+              {
+                "name": "bom",
+                "value": "",
+                "type": "query",
+                "description": "Include the BOM for each affected item in the payload, only includes the first level. affectedItems parameter must be true."
+              },
+              {
+                "name": "amls",
+                "value": "",
+                "type": "query",
+                "description": "Include AMLs for each affected item in the payload. affectedItems parameter must be true."
+              },
+              {
+                "name": "attachments",
+                "value": "",
+                "type": "query",
+                "description": "Include information about Change attachments. If affectedItems is true, Item attachments will also be included."
+              },
+              {
+                "name": "useXMLexportFieldset",
+                "value": "",
+                "type": "query",
+                "description": "Use the XML Export field set to determine which fields will be returned in the response. Default is false to return all fields."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Used to limit the number of affected items included in the response"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to provide if number of affected items exceeds limit provided or Propel limit of 1000"
+              }
+            ]
+          },
+          "docs": "Get a change order's details along with related information such as Affected Items, Bills of Materials, Approved Manufacturers Lists, and Attachments. This endpoint is useful for integrations with downstream systems such as ERP."
+        },
+        {
+          "info": {
+            "name": "Update Change Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/change/:changeId",
+            "params": [
+              {
+                "name": "changeId",
+                "value": "",
+                "type": "path",
+                "description": "Change Id or Change Number"
+              },
+              {
+                "name": "forceAdd",
+                "value": "",
+                "type": "query",
+                "description": "Force add any affected items that are currently on an existing change, by removing them from the previous change prior to adding."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update existing change order to add/remove a list of affected items and update change detail fields"
+        },
+        {
+          "info": {
+            "name": "Create Change",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/change",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Change"
+        },
+        {
+          "info": {
+            "name": "Get Change (Release Package)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/change/:itemNumber",
+            "params": [
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "path",
+                "description": "Item Number or record Id"
+              }
+            ]
+          },
+          "docs": "Get Change (Release Package)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

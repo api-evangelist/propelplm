@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly Item API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item/:itemNumber",
+            "params": [
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "path",
+                "description": "Item Number or record Id"
+              }
+            ]
+          },
+          "docs": "Get Item"
+        },
+        {
+          "info": {
+            "name": "Update Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item/:itemNumber",
+            "params": [
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "path",
+                "description": "Item Number or record Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Item"
+        },
+        {
+          "info": {
+            "name": "Create Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

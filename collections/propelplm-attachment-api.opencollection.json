@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly Attachment API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/attachment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload Attachment"
+        },
+        {
+          "info": {
+            "name": "Get Attachment Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item/:itemId/attachment",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of desired Item."
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "query",
+                "description": "Item Revision Id or Name. Gets attachments for specified rev"
+              },
+              {
+                "name": "Get Nested Attachments",
+                "value": "",
+                "type": "query",
+                "description": "If true, retrieves all attachments from all bom levels."
+              }
+            ]
+          },
+          "docs": "Gets all necessary information for attachments for a specific item. Returns array of Document__c records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

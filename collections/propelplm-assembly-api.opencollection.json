@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assembly",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/item/:itemNumber/bom",
+            "params": [
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "path",
+                "description": "Item Revision Id or Item Number of assembly to retrieve the BOM for. If Item Id or Item Number is provided, will default to latest released revision or latest revision if there is no released revision."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Level of BOM to fetch. Defaults to All levels. Accepts 'all' or '1', '2', '3', etc."
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query",
+                "description": "Returns the deltas in the BOM between the latest released revision and previous revision in addition to the BOM."
+              },
+              {
+                "name": "flatten",
+                "value": "",
+                "type": "query",
+                "description": "Returns a list of parts in the assembly without level. Will combine duplicate BOM rows that exist at different levels into a single BOM row."
+              }
+            ]
+          },
+          "docs": "Query to return a list of assembly records which represent the full BOM for the given Item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

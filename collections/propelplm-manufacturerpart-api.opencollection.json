@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Get Bom Assembly ManufacturerPart API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ManufacturerPart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create new Manufacturer Part(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/ManufacturerPart/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new Manufacturer Part(s)"
+        },
+        {
+          "info": {
+            "name": "Fetch a Manufacturer Part",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{endpoint}/services/apexrest/{namespace}/v2/ManufacturerPart/:MfrPartId",
+            "params": [
+              {
+                "name": "MfrPartId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record id of the Manufacturer Part"
+              }
+            ]
+          },
+          "docs": "Fetch a Manufacturer Part"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

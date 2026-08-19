@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "40a116ce-bcd6-4007-b609-c2f06bb16ab8",
+      "name": "Attachment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa531672-bbca-4c6d-8c28-e2e282727fc6",
+          "name": "Upload Attachment",
+          "request": {
+            "name": "Upload Attachment",
+            "description": {},
+            "url": {
+              "path": [
+                "attachment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f268b7d6-701d-4f19-9808-79be022238ba",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"type\": \"PLMJ__Document__c\",\n    \"url\": \"/services/data/v44.0/sobjects/PLMJ__Document__c/a094600000530J8AAI\"\n  },\n  \"LastModifiedBy\": {\n    \"attributes\": {\n      \"type\": \"User\",\n      \"url\": \"/services/data/v44.0/sobjects/User/005460000013ZT8AAM\"\n    },\n    \"Id\": \"005460000013ZT8AAM\",\n    \"Name\": \"Jayson Kadlecek\"\n  },\n  \"LastModifiedDate\": \"2019-07-20T19:21:02.000+0000\",\n  \"PLMJ__SKU_Grid_Id__c\": null,\n  \"Owner\": {\n    \"attributes\": {\n      \"type\": \"Name\",\n      \"url\": \"/services/data/v44.0/sobjects/User/005460000013ZT8AAM\"\n    },\n    \"Id\": \"005460000013ZT8AAM\",\n    \"Name\": \"Jayson Kadlecek\"\n  },\n  \"PLMJ__Item_Revision_Key__c\": null,\n  \"PLMJ__Item_Revision__c\": \"a0C46000002aKDHEA2\",\n  \"PLMJ__Google_File_Id__c\": null,\n  \"LastReferencedDate\": null,\n  \"Name\": \"datasheet.pdf\",\n  \"PLMJ__Content_Location__c\": \"S\",\n  \"PLMJ__Document_Title__c\": \"Datasheet for GRM0335C1H101JA01_\",\n  \"CreatedById\": \"005460000013ZT8AAM\",\n  \"OwnerId\": \"005460000013ZT8AAM\",\n  \"PLMJ__External_Attachment_URL__c\": null,\n  \"PLMJ__URL_Unique__c\": null,\n  \"PLMJ__Primary_Key__c\": null,\n  \"PLMJ__Moxtra_Binder__c\": null,\n  \"PLMJ__Document_Version_Download__c\": \"sfc/servlet.shepherd/version/download/06846000003yATXAA2?asPdf=false&operationContext=CHATTER\",\n  \"PLMJ__Content_Id__c\": \"06946000003l2zmAAA\",\n  \"IsDeleted\": false,\n  \"CreatedBy\": {\n    \"attributes\": {\n      \"type\": \"User\",\n      \"url\": \"/services/data/v44.0/sobjects/User/005460000013ZT8AAM\"\n    },\n    \"Id\": \"005460000013ZT8AAM\",\n    \"Name\": \"Jayson Kadlecek\"\n  },\n  \"PLMJ__Has_Redlines__c\": false,\n  \"LastViewedDate\": null,\n  \"PLMJ__SKU__c\": null,\n  \"PLMJ__Last_Modified_Date__c\": \"2019-07-20T19:21:02.000+0000\",\n  \"PLMJ__Checked_Out_User_Name__c\": null,\n  \"SystemModstamp\": \"2019-07-20T19:21:02.000+0000\",\n  \"PLMJ__Check_Out_Date_Time__c\": null,\n  \"PLMJ__Thumbnail__c\": \"<img src=\\\"/sfc/servlet.shepherd/version/renditionDownload/?rendition=THUMB120BY90&amp;versionId=06846000003yATXAA2\\\" alt=\\\"-\\\" border=\\\"0\\\"/>\",\n  \"PLMJ__Document_Version__c\": \"06846000003yATXAA2\",\n  \"PLMJ__Item_Revision__r\": {\n    \"attributes\": {\n      \"type\": \"PLMJ__Item_Revision__c\",\n      \"url\": \"/services/data/v44.0/sobjects/PLMJ__Item_Revision__c/a0C46000002aKDHEA2\"\n    },\n    \"Id\": \"a0C46000002aKDHEA2\",\n    \"Name\": \"100-00030:01*\"\n  },\n  \"PLMJ__File_Extension__c\": \"pdf\",\n  \"PLMJ__Check_Out_User__c\": null,\n  \"PLMJ__Primary_Attachment__c\": false,\n  \"PLMJ__Version_Number__c\": \"1\",\n  \"CreatedDate\": \"2019-07-20T19:21:02.000+0000\",\n  \"PLMJ__Document_Size__c\": 823071,\n  \"PLMJ__GridId__c\": \"06846000003yATXAA2\",\n  \"Id\": \"a094600000530J8AAI\",\n  \"LastModifiedById\": \"005460000013ZT8AAM\",\n  \"PLMJ__Preview_All_Versions__c\": \"06946000003l2zmAAA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94b4e6ed-f72c-438f-a6d1-ed5f0d069124",
+              "name": "Bad request — invalid payload or field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8306d4ed-4833-4758-a09e-d8b6fcb8a257",
+              "name": "Unauthorized — missing or invalid OAuth bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdffe99f-a569-4fd8-8934-0898123274de",
+              "name": "Not found — the requested record does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47cfd5c1-f116-4aa9-b3f7-c086817b8a9d",
+              "name": "Salesforce Apex REST internal error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemName\": \"100-00030\",\n  \"objectName\": \"Item__c\",\n  \"link\": \"https://cad.onshape.com/documents/7955649797e32c4e62a9af32/w/de4b4b99cbc69dd04529ed66/e/104445320e4a885ec9953052\",\n  \"docName\": \"3d Model in Onshape\",\n  \"description\": \"Link to Onshape 3d Model\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6bed603-c0e4-429b-bdd2-30c8c05712fa",
+          "name": "Get Attachment Information",
+          "request": {
+            "name": "Get Attachment Information",
+            "description": {
+              "content": "Gets all necessary information for attachments for a specific item. Returns array of Document__c records",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "item",
+                ":itemId",
+                "attachment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "revision",
+                  "value": "<string>",
+                  "description": "Item Revision Id or Name. Gets attachments for specified rev"
+                },
+                {
+                  "disabled": false,
+                  "key": "Get Nested Attachments",
+                  "value": "false",
+                  "description": "If true, retrieves all attachments from all bom levels."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) Id of desired Item."
+                },
+                {
+                  "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                  "type": "any",
+                  "value": "{{endpoint}}",
+                  "key": "endpoint"
+                },
+                {
+                  "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                  "type": "any",
+                  "value": "{{namespace}}",
+                  "key": "namespace"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18c4f05e-3fa2-4f56-91ef-f3ceb8d42103",
+              "name": "Array of Document__c records corresponding to attachments on desired Item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "revision",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Get Nested Attachments",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Id of desired Item."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"PDLM__Document_Version__c\": \"string\",\n    \"PDLM__External_Attachment_URL__c\": \"string\",\n    \"itemDetails\": {},\n    \"Custom_Field__c\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"PDLM__Document_Version__c\": \"string\",\n    \"PDLM__External_Attachment_URL__c\": \"string\",\n    \"itemDetails\": {},\n    \"Custom_Field__c\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53f1a16e-60dc-4474-a532-b83aaadeed23",
+              "name": "Change Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ":itemId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "revision",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Get Nested Attachments",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) Id of desired Item."
+                    },
+                    {
+                      "description": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+                      "type": "any",
+                      "value": "{{endpoint}}",
+                      "key": "endpoint"
+                    },
+                    {
+                      "description": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+                      "type": "any",
+                      "value": "{{namespace}}",
+                      "key": "namespace"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9559,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "endpoint"
+    },
+    {
+      "description": {
+        "content": "This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "PDLM",
+      "key": "namespace"
+    },
+    {
+      "type": "string",
+      "value": "https://{{endpoint}}/services/apexrest/{{namespace}}/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fc3f0740-3587-4316-b9d3-c30abc484e05",
+    "name": "Get Bom Assembly Attachment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
