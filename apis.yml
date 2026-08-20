@@ -64,6 +64,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Assets
+  tags_raw:
   - assets
   properties:
   - type: OpenAPI
@@ -105,6 +107,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Categories
+  tags_raw:
   - categories
   properties:
   - type: OpenAPI
@@ -115,6 +119,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Change
+  tags_raw:
   - change
   properties:
   - type: OpenAPI
@@ -125,6 +131,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Channels
+  tags_raw:
   - channels
   properties:
   - type: OpenAPI
@@ -178,6 +186,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Markup
+  tags_raw:
   - markup
   properties:
   - type: OpenAPI
@@ -188,6 +198,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Product
+  tags_raw:
   - products
   properties:
   - type: OpenAPI
@@ -198,6 +210,8 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
+  - Variants
+  tags_raw:
   - variants
   properties:
   - type: OpenAPI
