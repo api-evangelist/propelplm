@@ -1,11 +1,23 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly change API
-  license:
-    name: MIT
+  title: Propelplm Change API
+  version: '1.0'
+  description: 'Operations tagged change across 3 of this provider''s published API definitions: propelplm-change-put-openapi.yml, propelplm-core-openapi.yml, propelplm-release-package-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{endpoint}/services/apexrest/{namespace}/v2
+  variables:
+    endpoint:
+      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+    namespace:
+      default: PDLM
+      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+- url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+  description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+  variables:
+    orgURL:
+      default: NA85
+      description: Salesforce org subdomain / My Domain
+- url: https://{endpoint}/services/apexrest/{namespace}/v3
   variables:
     endpoint:
       description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
@@ -133,6 +145,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://{endpoint}/services/apexrest/{namespace}/v2
+      variables:
+        endpoint:
+          description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+        namespace:
+          default: PDLM
+          description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
   /change:
     post:
       operationId: createChange
@@ -160,6 +180,13 @@ paths:
           description: Not found — the requested record does not exist
         '500':
           description: Salesforce Apex REST internal error
+    servers:
+    - url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+      description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+      variables:
+        orgURL:
+          default: NA85
+          description: Salesforce org subdomain / My Domain
   /change/{itemNumber}:
     get:
       operationId: getChangeOrder
@@ -186,49 +213,37 @@ paths:
           description: Not found — the requested record does not exist
         '500':
           description: Salesforce Apex REST internal error
+    servers:
+    - url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+      description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+      variables:
+        orgURL:
+          default: NA85
+          description: Salesforce org subdomain / My Domain
 components:
   schemas:
-    Assembly:
+    ChangeBody:
       type: object
-      description: Assembly row represented in a BOM.
-      required:
-      - id
-      - name
-      - level
       properties:
-        Id:
-          type: string
-          description: Id of the child Item record
-        PDLM__Item_Number__c:
-          type: string
-          description: Name of the child Item record
-        PDLM__Level__c:
-          type: string
-          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Assembly__c object.
-    Document:
-      type: object
-      description: Document records attached to items
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: Id of the Attachment (Document__c) record
-        name:
-          type: string
-          description: Name of the attachment
-        PDLM__Document_Version__c:
-          type: string
-          description: The latest content version ID associated with the attachment. This contains the files latest base64 encoded content.
-        PDLM__External_Attachment_URL__c:
-          type: string
-          description: URL of the attachment if applicable.
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Document__c object.
+        addAffectedItems:
+          type: array
+          items:
+            type: string
+            format: string
+        removeAffectedItems:
+          type: array
+          items:
+            type: string
+            format: string
+        details:
+          type: object
+          properties:
+            PDLM__Description__c:
+              type: string
+              format: string
+            Custom_Field__c:
+              type: string
+              format: string
     AffectedItem:
       type: object
       required:
@@ -244,6 +259,35 @@ components:
         Custom_Field__c:
           type: string
           description: Placeholder for any custom fields an org may have on the Affected_Item__c object.
+    Change:
+      type: object
+      required:
+      - Id
+      - Name
+      properties:
+        Id:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Change__c object.
+        affectedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/AffectedItem'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     AffectedItem_2:
       type: object
       required:
@@ -271,74 +315,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Document'
-    ChangeBody:
-      type: object
-      properties:
-        addAffectedItems:
-          type: array
-          items:
-            type: string
-            format: string
-        removeAffectedItems:
-          type: array
-          items:
-            type: string
-            format: string
-        details:
-          type: object
-          properties:
-            PDLM__Description__c:
-              type: string
-              format: string
-            Custom_Field__c:
-              type: string
-              format: string
-    Attachment:
-      type: object
-      description: Attachments added to change, quality or AML records
-      required:
-      - id
-      properties:
-        Id:
-          type: string
-          description: The content version ID associated with the file. This contains the file's latest base64 encoded content.
-        ContentDocumentId:
-          type: string
-          description: Id of the Attachment (ContentDocument record)
-        ContentSize:
-          type: number
-          description: Size of the file
-        IsLatest:
-          type: boolean
-          description: Size of the file
-        Title:
-          type: string
-          description: Name of the file
-        VersionNumber:
-          type: number
-          description: The version number associated with the file
-    ReleasePackage:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        Id:
-          type: integer
-          format: int64
-        Name:
-          type: string
-        affectedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/AffectedItem_2'
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
-        next:
-          type: string
-          description: URL to retrieve the next page of affected items associated to this release package. Will only be provided if number of affected items exceeds provided limit or Propel limit of 1000
     Manufacturer:
       type: object
       description: Manufacturer Part representing AML rows
@@ -366,32 +342,107 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
-    Error:
+    Attachment:
       type: object
+      description: Attachments added to change, quality or AML records
       required:
-      - code
-      - message
+      - id
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        Id:
           type: string
-    Change:
+          description: The content version ID associated with the file. This contains the file's latest base64 encoded content.
+        ContentDocumentId:
+          type: string
+          description: Id of the Attachment (ContentDocument record)
+        ContentSize:
+          type: number
+          description: Size of the file
+        IsLatest:
+          type: boolean
+          description: Size of the file
+        Title:
+          type: string
+          description: Name of the file
+        VersionNumber:
+          type: number
+          description: The version number associated with the file
+    Assembly:
+      type: object
+      description: Assembly row represented in a BOM.
+      required:
+      - id
+      - name
+      - level
+      properties:
+        Id:
+          type: string
+          description: Id of the child Item record
+        PDLM__Item_Number__c:
+          type: string
+          description: Name of the child Item record
+        PDLM__Level__c:
+          type: string
+          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Assembly__c object.
+    ReleasePackage:
       type: object
       required:
-      - Id
-      - Name
+      - id
+      - name
       properties:
         Id:
           type: integer
           format: int64
         Name:
           type: string
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Change__c object.
         affectedItems:
           type: array
           items:
-            $ref: '#/components/schemas/AffectedItem'
+            $ref: '#/components/schemas/AffectedItem_2'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        next:
+          type: string
+          description: URL to retrieve the next page of affected items associated to this release package. Will only be provided if number of affected items exceeds provided limit or Propel limit of 1000
+    Document:
+      type: object
+      description: Document records attached to items
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Id of the Attachment (Document__c) record
+        name:
+          type: string
+          description: Name of the attachment
+        PDLM__Document_Version__c:
+          type: string
+          description: The latest content version ID associated with the attachment. This contains the files latest base64 encoded content.
+        PDLM__External_Attachment_URL__c:
+          type: string
+          description: URL of the attachment if applicable.
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Document__c object.
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            full: Full access
+            api: API access
+            web: Web access
+            refresh_token: Obtain refresh tokens for offline access
+x-refined-from:
+- propelplm-change-put-openapi.yml
+- propelplm-core-openapi.yml
+- propelplm-release-package-openapi.yml

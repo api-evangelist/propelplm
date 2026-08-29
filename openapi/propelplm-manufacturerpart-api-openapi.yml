@@ -1,17 +1,27 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly ManufacturerPart API
+  version: 1.0.0
+  title: Propel Manufacturer Part API
+  description: Propel Manufacturer Part API
   license:
     name: MIT
+    url: https://spdx.org/licenses/MIT
+  contact:
+    name: Propel Support
+    url: https://propel.force.com/helpcenter/s/
+    email: support@propelsoftware.com
 servers:
-- url: https://{endpoint}/services/apexrest/{namespace}/v2
+- url: https://{endpoint}/services/apexrest/{namespace}
+  description: Propel API Endpoint Base URL
   variables:
     endpoint:
       description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
     namespace:
       default: PDLM
-      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+      description: This value should default to PDLM for managed package environments. For other environments, provide the namespace to your dev org.
+security:
+- oAuth2Implicit:
+  - api
 tags:
 - name: ManufacturerPart
 paths:
@@ -78,6 +88,13 @@ paths:
       - ManufacturerPart
 components:
   schemas:
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Missing mpn or invalid manufacturer/distributor. No parts created.
+    MfrPartId:
+      description: The Salesforce record id of the Manufacturer Part
+      type: string
     MfrList:
       description: Model containing AML list object
       type: object
@@ -88,28 +105,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManufacturerPart'
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Missing mpn or invalid manufacturer/distributor. No parts created.
-    ManufacturerPart:
-      description: Model containing Manufacturer Part mappings
-      type: object
-      required:
-      - manufacturer
-      - mpn
-      properties:
-        manufacturer:
-          type: string
-          example: United Gas & Oil
-        mpn:
-          type: string
-        distributor:
-          type: string
-          example: GenePoint
-    MfrPartId:
-      description: The Salesforce record id of the Manufacturer Part
-      type: string
     NewOrExistingManufacturerPart:
       description: Model containing newly created Manufacturer Part details
       type: object
@@ -138,3 +133,27 @@ components:
         Id:
           description: The Salesforce record id of the newly created Manufacturer Part
           type: string
+    ManufacturerPart:
+      description: Model containing Manufacturer Part mappings
+      type: object
+      required:
+      - manufacturer
+      - mpn
+      properties:
+        manufacturer:
+          type: string
+          example: United Gas & Oil
+        mpn:
+          type: string
+        distributor:
+          type: string
+          example: GenePoint
+  securitySchemes:
+    oAuth2Implicit:
+      type: oauth2
+      description: This API uses OAuth 2 with the implicit grant flow.
+      flows:
+        implicit:
+          authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
+          scopes:
+            api: Enable read and write access to Propel objects

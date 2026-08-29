@@ -1,17 +1,22 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly Item API
+  title: Propel PLM Core REST Item API
+  version: '2.0'
+  description: Standard business-logic REST API for Propel PLM, running as a Salesforce Apex REST service. Resource-based endpoints for the core PLM objects — Items, Bills of Material (BOM), Changes, and Attachments. All requests are authenticated with a Salesforce OAuth 2.0 bearer token and execute within the permission scope of the requesting user. Derived by API Evangelist from the provider-published public Postman collection.
+  contact:
+    name: Propel Developer Docs
+    url: https://developer.propelplm.com/
   license:
-    name: MIT
+    name: Proprietary
 servers:
-- url: https://{endpoint}/services/apexrest/{namespace}/v2
+- url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+  description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
   variables:
-    endpoint:
-      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
-    namespace:
-      default: PDLM
-      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+    orgURL:
+      default: NA85
+      description: Salesforce org subdomain / My Domain
+security:
+- salesforceOAuth: []
 tags:
 - name: Item
 paths:
@@ -2017,3 +2022,17 @@ paths:
           description: Not found — the requested record does not exist
         '500':
           description: Salesforce Apex REST internal error
+components:
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            full: Full access
+            api: API access
+            web: Web access
+            refresh_token: Obtain refresh tokens for offline access

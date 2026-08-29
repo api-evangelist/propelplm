@@ -1,17 +1,19 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly assets API
-  license:
-    name: MIT
+  title: Propel PIM Assets API
+  version: '1.0'
+  description: Read API for Propel Product Information Management (PIM) — retrieve published product, variant, category, channel, and digital-asset data for downstream commerce and marketing channels. Derived by API Evangelist from the provider-published PIM Postman collection.
+  contact:
+    name: Propel Developer Docs
+    url: https://developer.propelplm.com/
 servers:
-- url: https://{endpoint}/services/apexrest/{namespace}/v2
+- url: '{pimBaseUrl}/api/v1'
   variables:
-    endpoint:
-      description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
-    namespace:
-      default: PDLM
-      description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
+    pimBaseUrl:
+      default: https://pim.propelsoftware.com
+      description: Propel PIM base URL for your org
+security:
+- salesforceOAuth: []
 tags:
 - name: assets
 paths:
@@ -58,3 +60,13 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
+components:
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: API access

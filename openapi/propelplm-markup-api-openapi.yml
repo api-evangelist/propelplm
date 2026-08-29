@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly markup API
+  version: '2.0'
+  title: Item Attachment Put Markup API
   license:
     name: MIT
 servers:
@@ -58,6 +58,17 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     Markup:
       type: object
       required:
@@ -90,17 +101,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Markup'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     MarkupTypes:
       type: string
       enum:

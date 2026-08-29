@@ -1,10 +1,15 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '3.0'
-  title: Get Bom Assembly Attachment API
-  license:
-    name: MIT
+  title: Propelplm Attachment API
+  version: '2.0'
+  description: 'Operations tagged Attachment across 2 of this provider''s published API definitions: propelplm-core-openapi.yml, propelplm-item-attachment-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
+- url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+  description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+  variables:
+    orgURL:
+      default: NA85
+      description: Salesforce org subdomain / My Domain
 - url: https://{endpoint}/services/apexrest/{namespace}/v2
   variables:
     endpoint:
@@ -111,6 +116,13 @@ paths:
           description: Not found — the requested record does not exist
         '500':
           description: Salesforce Apex REST internal error
+    servers:
+    - url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
+      description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
+      variables:
+        orgURL:
+          default: NA85
+          description: Salesforce org subdomain / My Domain
   /item/{itemId}/attachment:
     get:
       summary: Get Attachment Information
@@ -154,8 +166,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://{endpoint}/services/apexrest/{namespace}/v2
+      variables:
+        endpoint:
+          description: This is the Salesforce instance url. It is the URL when using Salesforce Classic, i.e. propel.my.salesforce.com
+        namespace:
+          default: PDLM
+          description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
 components:
   schemas:
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     ItemDetails:
       type: object
       description: If get Nested Attachment = true, returns Id, Item Number, and Revision of nested items in bom.
@@ -200,18 +235,19 @@ components:
         Custom_Field__c:
           type: string
           description: Placeholder for any custom fields an org may have on the Document__c object.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    Documents:
-      type: array
-      items:
-        $ref: '#/components/schemas/Document'
+  securitySchemes:
+    salesforceOAuth:
+      type: oauth2
+      description: Salesforce OAuth 2.0 (Connected App). Server-side (authorization code) flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            full: Full access
+            api: API access
+            web: Web access
+            refresh_token: Obtain refresh tokens for offline access
+x-refined-from:
+- propelplm-core-openapi.yml
+- propelplm-item-attachment-openapi.yml
