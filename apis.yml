@@ -19,6 +19,18 @@ x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -48,16 +60,6 @@ tags:
 - Bill of Materials
 - Change Management
 apis:
-- aid: propelplm:propelplm-assembly-api
-  name: Propel Software (Propel PLM) Assembly API
-  description: The Assembly API from Propel Software (Propel PLM) — 1 operation(s) for assembly.
-  humanURL: https://developer.propelplm.com/docs/
-  baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
-  tags:
-  - Assembly
-  properties:
-  - type: OpenAPI
-    url: openapi/propelplm-assembly-api-openapi.yml
 - aid: propelplm:propelplm-assets-api
   name: Propel Software (Propel PLM) assets API
   description: The assets API from Propel Software (Propel PLM) — 1 operation(s) for assets.
