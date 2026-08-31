@@ -121,7 +121,7 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
-  - Change
+  - change
   tags_raw:
   - change
   properties:
@@ -188,7 +188,7 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
-  - Markup
+  - markup
   tags_raw:
   - markup
   properties:
@@ -212,7 +212,7 @@ apis:
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
   tags:
-  - Variants
+  - variants
   tags_raw:
   - variants
   properties:
