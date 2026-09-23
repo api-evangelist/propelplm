@@ -27,7 +27,7 @@ tags:
 paths:
   /configuration/:
     post:
-      summary: Upsert a new configuration. A configuration is a custom setting or metadata within the package, the former being keyed by the 'Name' field whilst the latter on the 'Label' field.
+      summary: Upsert a new configuration.
       requestBody:
         required: true
         content:
@@ -61,6 +61,8 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
       - Configuration
+      operationId: postConfiguration
+      x-operation-id-source: derived
 components:
   schemas:
     SharingRule:

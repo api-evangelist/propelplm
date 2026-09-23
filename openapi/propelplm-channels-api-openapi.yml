@@ -15,14 +15,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: channels
+- name: Channels
 paths:
   /channels:
     get:
       operationId: getAllChannels
       summary: Get All Channels
       tags:
-      - channels
+      - Channels
       security:
       - salesforceOAuth: []
       responses:
@@ -72,7 +72,7 @@ paths:
       operationId: getChannelInfo
       summary: Get Channel Info
       tags:
-      - channels
+      - Channels
       security:
       - salesforceOAuth: []
       parameters:
@@ -112,7 +112,7 @@ paths:
       operationId: getChannelSProducts
       summary: Get Channel's Products
       tags:
-      - channels
+      - Channels
       security:
       - salesforceOAuth: []
       parameters:

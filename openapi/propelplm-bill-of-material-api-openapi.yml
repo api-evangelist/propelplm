@@ -69,16 +69,77 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Rows:
+    Assembly:
       type: object
-      description: Contains information about a changed bom row.
+      description: Assembly row represented in a BOM.
       required:
-      - Row
+      - id
+      - name
+      - level
       properties:
-        Row:
+        Id:
+          type: string
+          description: Id of the child Item record
+        PDLM__Item_Number__c:
+          type: string
+          description: Name of the child Item record
+        PDLM__Level__c:
+          type: string
+          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Assembly__c object.
+    GetBom:
+      type: object
+      required:
+      - returnBom
+      properties:
+        returnBom:
           type: array
           items:
-            $ref: '#/components/schemas/Row'
+            $ref: '#/components/schemas/ReturnBom'
+          description: Array of objects containing information about the manufacturer items and assemblies associated with the bom.
+        deltaBom:
+          type: object
+          items:
+            $ref: '#/components/schemas/DeltaBom'
+          description: Contains information about changes in the bom.
+    DeltaBom:
+      type: object
+      description: Contains Manufacturer Parts, Details, and Items that have been changed in the bom.
+      required:
+      - ManufacturerParts
+      - Details
+      - Bom
+      properties:
+        ManufacturerParts:
+          type: object
+          items:
+            $ref: '#/components/schemas/Rows'
+        Details:
+          type: object
+          items:
+            $ref: '#/components/schemas/Fields'
+        Bom:
+          type: object
+          items:
+            $ref: '#/components/schemas/Rows'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Field:
+      type: array
+      items:
+        $ref: '#/components/schemas/FieldObject'
+      description: Array of objects containing information about fields that have been updated
     ReturnBom:
       type: object
       required:
@@ -93,22 +154,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Manufacturer'
+    RowObjects:
+      required:
+      - UniqueId
+      - Status
+      properties:
+        UniqueId:
+          type: string
+          description: Name of changed Item__c or Manufacturer_Part__c
+        Status:
+          type: string
+          description: Status of object. Added, Deleted, or Updated.
+        SecondaryKey:
+          type: string
+          description: Unique Identifier for an Assembly__c (Secondary_Unique_Key__c).
+        Fields:
+          type: object
+          items:
+            $ref: '#/components/schemas/Fields'
+          description: Object containing Fields that have been updated on this assembly.
     Row:
       type: array
       items:
         $ref: '#/components/schemas/RowObjects'
       description: Array of Objects containing information about a changed bom row
-    Error:
+    Rows:
       type: object
+      description: Contains information about a changed bom row.
       required:
-      - code
-      - message
+      - Row
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+        Row:
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
     Manufacturer:
       type: object
       description: Manufacturer Part representing AML rows
@@ -132,80 +211,16 @@ components:
         Custom_Field__c:
           type: string
           description: Placeholder for any custom fields an org may have on the Manufacturer_Part__c object.
-    Assembly:
+    Fields:
       type: object
-      description: Assembly row represented in a BOM.
+      description: Object containing Fields that have been updated on this assembly.
       required:
-      - id
-      - name
-      - level
+      - Field
       properties:
-        Id:
-          type: string
-          description: Id of the child Item record
-        PDLM__Item_Number__c:
-          type: string
-          description: Name of the child Item record
-        PDLM__Level__c:
-          type: string
-          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Assembly__c object.
-    DeltaBom:
-      type: object
-      description: Contains Manufacturer Parts, Details, and Items that have been changed in the bom.
-      required:
-      - ManufacturerParts
-      - Details
-      - Bom
-      properties:
-        ManufacturerParts:
-          type: object
-          items:
-            $ref: '#/components/schemas/Rows'
-        Details:
-          type: object
-          items:
-            $ref: '#/components/schemas/Fields'
-        Bom:
-          type: object
-          items:
-            $ref: '#/components/schemas/Rows'
-    RowObjects:
-      required:
-      - UniqueId
-      - Status
-      properties:
-        UniqueId:
-          type: string
-          description: Name of changed Item__c or Manufacturer_Part__c
-        Status:
-          type: string
-          description: Status of object. Added, Deleted, or Updated.
-        SecondaryKey:
-          type: string
-          description: Unique Identifier for an Assembly__c (Secondary_Unique_Key__c).
-        Fields:
-          type: object
-          items:
-            $ref: '#/components/schemas/Fields'
-          description: Object containing Fields that have been updated on this assembly.
-    GetBom:
-      type: object
-      required:
-      - returnBom
-      properties:
-        returnBom:
+        field:
           type: array
           items:
-            $ref: '#/components/schemas/ReturnBom'
-          description: Array of objects containing information about the manufacturer items and assemblies associated with the bom.
-        deltaBom:
-          type: object
-          items:
-            $ref: '#/components/schemas/DeltaBom'
-          description: Contains information about changes in the bom.
+            $ref: '#/components/schemas/Field'
     FieldObject:
       type: object
       required:
@@ -222,18 +237,3 @@ components:
         Name:
           type: string
           description: Name of the field that has been updated
-    Fields:
-      type: object
-      description: Object containing Fields that have been updated on this assembly.
-      required:
-      - Field
-      properties:
-        field:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-    Field:
-      type: array
-      items:
-        $ref: '#/components/schemas/FieldObject'
-      description: Array of objects containing information about fields that have been updated

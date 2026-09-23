@@ -15,14 +15,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: assets
+- name: Assets
 paths:
   /assets/{assetId}:
     get:
       operationId: getAssetInfo
       summary: Get Asset Info
       tags:
-      - assets
+      - Assets
       security:
       - salesforceOAuth: []
       parameters:

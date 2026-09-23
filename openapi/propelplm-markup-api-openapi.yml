@@ -58,17 +58,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     Markup:
       type: object
       required:
@@ -91,16 +80,27 @@ components:
         key:
           type: string
       description: Contains information about how an SObject's fields have changed when compared to the point of the item's release. The 'rowNew' property only contains the delta, i.e. if there are no changes 'rowNew' is an empty object.
+    Markups:
+      type: array
+      items:
+        $ref: '#/components/schemas/Markup'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     SObjectTypes:
       type: string
       enum:
       - Assembly__c
       - Document__c
       - Manufacturer_Item__c
-    Markups:
-      type: array
-      items:
-        $ref: '#/components/schemas/Markup'
     MarkupTypes:
       type: string
       enum:

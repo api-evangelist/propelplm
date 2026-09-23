@@ -176,10 +176,6 @@ paths:
           description: This value should default to PDLM for production environments. For dev environments, provide the namespace to your dev org.
 components:
   schemas:
-    Documents:
-      type: array
-      items:
-        $ref: '#/components/schemas/Document'
     Error:
       type: object
       required:
@@ -235,6 +231,10 @@ components:
         Custom_Field__c:
           type: string
           description: Placeholder for any custom fields an org may have on the Document__c object.
+    Documents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Document'
   securitySchemes:
     salesforceOAuth:
       type: oauth2

@@ -15,14 +15,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: variants
+- name: Variants
 paths:
   /variants/{variantValueId}:
     get:
       operationId: getVariantValueInfo
       summary: Get Variant Value Info
       tags:
-      - variants
+      - Variants
       security:
       - salesforceOAuth: []
       parameters:
@@ -60,7 +60,7 @@ paths:
       operationId: getVariantValueSAttributeAll
       summary: Get Variant Value's Attribute All
       tags:
-      - variants
+      - Variants
       security:
       - salesforceOAuth: []
       parameters:
@@ -98,7 +98,7 @@ paths:
       operationId: getVariantValueSAttributeOne
       summary: Get Variant Value's Attribute One
       tags:
-      - variants
+      - Variants
       security:
       - salesforceOAuth: []
       parameters:
@@ -138,7 +138,7 @@ paths:
       operationId: getVariantValueSAssets
       summary: Get Variant Value's Assets
       tags:
-      - variants
+      - Variants
       security:
       - salesforceOAuth: []
       parameters:

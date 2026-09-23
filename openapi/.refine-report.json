@@ -68,10 +68,10 @@
     "propelplm-release-package-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "propelplm-release-package-openapi.yml: declared missing tag: change",
     "tag 'change' spans 3 source specs (propelplm-change-put-openapi.yml, propelplm-core-openapi.yml, propelplm-release-package-openapi.yml): per-path servers applied",
-    "tag 'Attachment' spans 2 source specs (propelplm-core-openapi.yml, propelplm-item-attachment-openapi.yml): per-path servers applied"
+    "tag 'Attachment' spans 2 source specs (propelplm-core-openapi.yml, propelplm-item-attachment-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "propelplm-assembly-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "propelplm-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "propelplm-attachment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "propelplm-bill-of-material-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -62,12 +62,25 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
       - ManufacturerItem
+      operationId: postManufacturerItemByItemId
+      x-operation-id-source: derived
 components:
   schemas:
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Invalid manufacturer/distributor value(s). No items or parts created.
+    ManufacturerPart:
+      description: Model containing Manufacturer Part mappings
+      type: object
+      required:
+      - manufacturer
+      - mpn
+      properties:
+        manufacturer:
+          type: string
+          example: United Gas & Oil
+        mpn:
+          type: string
+        distributor:
+          type: string
+          example: GenePoint
     ItemId:
       description: The Salesforce record id of the Item
       type: string
@@ -81,6 +94,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ManufacturerPart'
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Invalid manufacturer/distributor value(s). No items or parts created.
     NewOrExistingManufacturerItem:
       description: Model containing newly created Manufacturer Item details
       type: object
@@ -109,21 +126,6 @@ components:
         Id:
           description: The Salesforce record id of the newly created Manufacturer Item
           type: string
-    ManufacturerPart:
-      description: Model containing Manufacturer Part mappings
-      type: object
-      required:
-      - manufacturer
-      - mpn
-      properties:
-        manufacturer:
-          type: string
-          example: United Gas & Oil
-        mpn:
-          type: string
-        distributor:
-          type: string
-          example: GenePoint
   securitySchemes:
     oAuth2Implicit:
       type: oauth2

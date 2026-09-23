@@ -18,14 +18,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: Bom
+- name: BOM
 paths:
   /bom/{itemNumber}:
     get:
       operationId: getBom
       summary: Get BOM
       tags:
-      - Bom
+      - BOM
       security:
       - salesforceOAuth: []
       parameters:
@@ -693,7 +693,7 @@ paths:
       operationId: updateBom
       summary: Update BOM
       tags:
-      - Bom
+      - BOM
       security:
       - salesforceOAuth: []
       parameters:

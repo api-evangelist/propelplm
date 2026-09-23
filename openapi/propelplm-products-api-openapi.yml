@@ -15,14 +15,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: products
+- name: Products
 paths:
   /products/{productId}:
     get:
       operationId: getProductInfo
       summary: Get Product Info
       tags:
-      - products
+      - Products
       security:
       - salesforceOAuth: []
       parameters:
@@ -73,7 +73,7 @@ paths:
       operationId: getProductVariantValue
       summary: Get Product Variant Value
       tags:
-      - products
+      - Products
       security:
       - salesforceOAuth: []
       parameters:
@@ -124,7 +124,7 @@ paths:
       operationId: getProductSAttributeAll
       summary: Get Product's Attribute All
       tags:
-      - products
+      - Products
       security:
       - salesforceOAuth: []
       parameters:
@@ -175,7 +175,7 @@ paths:
       operationId: getProductSAttributeOne
       summary: Get Product's Attribute One
       tags:
-      - products
+      - Products
       security:
       - salesforceOAuth: []
       parameters:
@@ -215,7 +215,7 @@ paths:
       operationId: getProductSAssets
       summary: Get Product's Assets
       tags:
-      - products
+      - Products
       security:
       - salesforceOAuth: []
       parameters:

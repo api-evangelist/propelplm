@@ -15,14 +15,14 @@ servers:
 security:
 - salesforceOAuth: []
 tags:
-- name: categories
+- name: Categories
 paths:
   /categories:
     get:
       operationId: getAllCategroies
       summary: Get All Categroies
       tags:
-      - categories
+      - Categories
       security:
       - salesforceOAuth: []
       responses:
@@ -72,7 +72,7 @@ paths:
       operationId: getCategoryInfo
       summary: Get Category Info
       tags:
-      - categories
+      - Categories
       security:
       - salesforceOAuth: []
       parameters:
@@ -112,7 +112,7 @@ paths:
       operationId: getCategorySProducts
       summary: Get Category's Products
       tags:
-      - categories
+      - Categories
       security:
       - salesforceOAuth: []
       parameters:
