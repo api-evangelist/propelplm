@@ -92,21 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ManufacturerPart:
-      description: Model containing Manufacturer Part mappings
-      type: object
-      required:
-      - manufacturer
-      - mpn
-      properties:
-        manufacturer:
-          type: string
-          example: United Gas & Oil
-        mpn:
-          type: string
-        distributor:
-          type: string
-          example: GenePoint
     NewOrExistingManufacturerPart:
       description: Model containing newly created Manufacturer Part details
       type: object
@@ -138,6 +123,21 @@ components:
     MfrPartId:
       description: The Salesforce record id of the Manufacturer Part
       type: string
+    ManufacturerPart:
+      description: Model containing Manufacturer Part mappings
+      type: object
+      required:
+      - manufacturer
+      - mpn
+      properties:
+        manufacturer:
+          type: string
+          example: United Gas & Oil
+        mpn:
+          type: string
+        distributor:
+          type: string
+          example: GenePoint
     MfrList:
       description: Model containing AML list object
       type: object

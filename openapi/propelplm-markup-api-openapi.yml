@@ -58,6 +58,12 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    SObjectTypes:
+      type: string
+      enum:
+      - Assembly__c
+      - Document__c
+      - Manufacturer_Item__c
     Markup:
       type: object
       required:
@@ -84,6 +90,13 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Markup'
+    MarkupTypes:
+      type: string
+      enum:
+      - Add
+      - Delete
+      - Modify
+      - NoChange
     Error:
       type: object
       required:
@@ -95,16 +108,3 @@ components:
           format: int32
         message:
           type: string
-    SObjectTypes:
-      type: string
-      enum:
-      - Assembly__c
-      - Document__c
-      - Manufacturer_Item__c
-    MarkupTypes:
-      type: string
-      enum:
-      - Add
-      - Delete
-      - Modify
-      - NoChange

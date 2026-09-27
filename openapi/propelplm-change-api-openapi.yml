@@ -189,7 +189,7 @@ paths:
           description: Salesforce org subdomain / My Domain
   /change/{itemNumber}:
     get:
-      operationId: getChangeOrder
+      operationId: getChangeByItemNumber
       summary: Get Change (Release Package)
       tags:
       - Change
@@ -213,6 +213,8 @@ paths:
           description: Not found — the requested record does not exist
         '500':
           description: Salesforce Apex REST internal error
+      x-operation-id-source: normalized
+      x-operation-id-original: getChangeOrder
     servers:
     - url: https://{orgURL}.salesforce.com/services/apexrest/PDLM/api
       description: Salesforce Apex REST endpoint. orgURL is your org subdomain (e.g. NA85, EU142, or <custom>.my).
@@ -240,6 +242,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AffectedItem'
+    AffectedItem:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        Id:
+          type: string
+          description: Id of the associated Item Revision record
+        Name:
+          type: string
+          description: Name of the item record associated to the affected item
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Affected_Item__c object.
     ChangeBody:
       type: object
       properties:
@@ -262,95 +279,6 @@ components:
             Custom_Field__c:
               type: string
               format: string
-    AffectedItem:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        Id:
-          type: string
-          description: Id of the associated Item Revision record
-        Name:
-          type: string
-          description: Name of the item record associated to the affected item
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Affected_Item__c object.
-    Assembly:
-      type: object
-      description: Assembly row represented in a BOM.
-      required:
-      - id
-      - name
-      - level
-      properties:
-        Id:
-          type: string
-          description: Id of the child Item record
-        PDLM__Item_Number__c:
-          type: string
-          description: Name of the child Item record
-        PDLM__Level__c:
-          type: string
-          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Assembly__c object.
-    Document:
-      type: object
-      description: Document records attached to items
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: Id of the Attachment (Document__c) record
-        name:
-          type: string
-          description: Name of the attachment
-        PDLM__Document_Version__c:
-          type: string
-          description: The latest content version ID associated with the attachment. This contains the files latest base64 encoded content.
-        PDLM__External_Attachment_URL__c:
-          type: string
-          description: URL of the attachment if applicable.
-        Custom_Field__c:
-          type: string
-          description: Placeholder for any custom fields an org may have on the Document__c object.
-    ReleasePackage:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        Id:
-          type: integer
-          format: int64
-        Name:
-          type: string
-        affectedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/AffectedItem_2'
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attachment'
-        next:
-          type: string
-          description: URL to retrieve the next page of affected items associated to this release package. Will only be provided if number of affected items exceeds provided limit or Propel limit of 1000
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     Manufacturer:
       type: object
       description: Manufacturer Part representing AML rows
@@ -378,6 +306,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
+    ReleasePackage:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        Id:
+          type: integer
+          format: int64
+        Name:
+          type: string
+        affectedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/AffectedItem_2'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        next:
+          type: string
+          description: URL to retrieve the next page of affected items associated to this release package. Will only be provided if number of affected items exceeds provided limit or Propel limit of 1000
+    Document:
+      type: object
+      description: Document records attached to items
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Id of the Attachment (Document__c) record
+        name:
+          type: string
+          description: Name of the attachment
+        PDLM__Document_Version__c:
+          type: string
+          description: The latest content version ID associated with the attachment. This contains the files latest base64 encoded content.
+        PDLM__External_Attachment_URL__c:
+          type: string
+          description: URL of the attachment if applicable.
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Document__c object.
     AffectedItem_2:
       type: object
       required:
@@ -405,6 +376,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Document'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     Attachment:
       type: object
       description: Attachments added to change, quality or AML records
@@ -429,6 +411,26 @@ components:
         VersionNumber:
           type: number
           description: The version number associated with the file
+    Assembly:
+      type: object
+      description: Assembly row represented in a BOM.
+      required:
+      - id
+      - name
+      - level
+      properties:
+        Id:
+          type: string
+          description: Id of the child Item record
+        PDLM__Item_Number__c:
+          type: string
+          description: Name of the child Item record
+        PDLM__Level__c:
+          type: string
+          description: BOM level of assembly row. In the format of 1, 1.1, 2, 2.1, 2.2, 2.2.1
+        Custom_Field__c:
+          type: string
+          description: Placeholder for any custom fields an org may have on the Assembly__c object.
   securitySchemes:
     salesforceOAuth:
       type: oauth2

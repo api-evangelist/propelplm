@@ -126,7 +126,7 @@ apis:
   - type: OpenAPI
     url: openapi/propelplm-categories-api-openapi.yml
 - aid: propelplm:propelplm-change-api
-  name: Propel Software (Propel PLM) change API
+  name: Propel Software (Propel PLM) Change API
   description: The change API from Propel Software (Propel PLM) — 3 operation(s) for change.
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
@@ -138,7 +138,7 @@ apis:
   - type: OpenAPI
     url: openapi/propelplm-change-api-openapi.yml
 - aid: propelplm:propelplm-channels-api
-  name: Propel Software (Propel PLM) channels API
+  name: Propel Software (Propel PLM) Channels API
   description: The channels API from Propel Software (Propel PLM) — 3 operation(s) for channels.
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
@@ -193,7 +193,7 @@ apis:
   - type: OpenAPI
     url: openapi/propelplm-manufacturerpart-api-openapi.yml
 - aid: propelplm:propelplm-markup-api
-  name: Propel Software (Propel PLM) markup API
+  name: Propel Software (Propel PLM) Markup API
   description: The markup API from Propel Software (Propel PLM) — 1 operation(s) for markup.
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
@@ -205,7 +205,7 @@ apis:
   - type: OpenAPI
     url: openapi/propelplm-markup-api-openapi.yml
 - aid: propelplm:propelplm-products-api
-  name: Propel Software (Propel PLM) products API
+  name: Propel Software (Propel PLM) Products API
   description: The products API from Propel Software (Propel PLM) — 5 operation(s) for products.
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
@@ -217,7 +217,7 @@ apis:
   - type: OpenAPI
     url: openapi/propelplm-products-api-openapi.yml
 - aid: propelplm:propelplm-variants-api
-  name: Propel Software (Propel PLM) variants API
+  name: Propel Software (Propel PLM) Variants API
   description: The variants API from Propel Software (Propel PLM) — 4 operation(s) for variants.
   humanURL: https://developer.propelplm.com/docs/
   baseURL: https://na85.salesforce.com/services/apexrest/PDLM/api
