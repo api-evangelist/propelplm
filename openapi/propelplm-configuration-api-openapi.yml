@@ -76,6 +76,10 @@ components:
           example: Sharing Rule 8 - Share with Manufacturers
         Share_With_Field__c:
           type: string
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Request body malformed.
     GoogleDriveSetting:
       description: Example google drive custom setting
       type: object
@@ -101,10 +105,6 @@ components:
           type: string
         Released_Folder_Id__c:
           type: string
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Request body malformed.
   securitySchemes:
     oAuth2Implicit:
       type: oauth2
