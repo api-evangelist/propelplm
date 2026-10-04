@@ -92,23 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MfrPartId:
-      description: The Salesforce record id of the Manufacturer Part
-      type: string
-    MfrList:
-      description: Model containing AML list object
-      type: object
-      required:
-      - addAML
-      properties:
-        addAML:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManufacturerPart'
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Missing mpn or invalid manufacturer/distributor. No parts created.
     ManufacturerPart:
       description: Model containing Manufacturer Part mappings
       type: object
@@ -124,6 +107,16 @@ components:
         distributor:
           type: string
           example: GenePoint
+    MfrList:
+      description: Model containing AML list object
+      type: object
+      required:
+      - addAML
+      properties:
+        addAML:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManufacturerPart'
     NewOrExistingManufacturerPart:
       description: Model containing newly created Manufacturer Part details
       type: object
@@ -152,6 +145,13 @@ components:
         Id:
           description: The Salesforce record id of the newly created Manufacturer Part
           type: string
+    MfrPartId:
+      description: The Salesforce record id of the Manufacturer Part
+      type: string
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Missing mpn or invalid manufacturer/distributor. No parts created.
   securitySchemes:
     oAuth2Implicit:
       type: oauth2
