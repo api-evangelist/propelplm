@@ -1,0 +1,55 @@
+slug: propelplm
+provider: Propel Software (Propel PLM)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: BOM
+  spec_file: propelplm-bom-api-openapi.yml
+  capability_id: BC-820.30
+  capability_id_l1: BC-820
+  capability_name: Product Specification Management
+  confidence: 0.88
+  evidence: GET /bom/{itemNumber} getBom Get BOM; PUT /bom/{itemNumber} updateBom Update BOM — "Resource-based
+    endpoints for the core PLM objects — Items, Bills of Material (BOM)"
+  reason: Reading and updating bills of material is squarely product specification management, whose definition
+    explicitly names BOM definition.
+- tag: Bill of Material
+  spec_file: propelplm-bill-of-material-api-openapi.yml
+  capability_id: BC-820.30
+  capability_id_l1: BC-820
+  capability_name: Product Specification Management
+  confidence: 0.88
+  evidence: 'GET /item/{itemNumber}/bom  getBom  BOM; schemas: Assembly, ReturnBom, DeltaBom, Manufacturer'
+  reason: Assembly/BOM retrieval for an item is product structure and specification data, matching BOM
+    definition under Product Specification Management.
+- tag: Change
+  spec_file: propelplm-change-api-openapi.yml
+  capability_id: BC-820
+  capability_id_l1: BC-820
+  capability_name: Product Lifecycle Management
+  confidence: 0.78
+  evidence: 'POST /change createChange Create Change; PUT /change/{changeId} Update Change Order; GET
+    /change/{changeId} Change (Release Package); schemas: AffectedItem, ReleasePackage'
+  reason: Engineering change orders with affected items and release packages are PLM change control over
+    products; the sub-capability (specification vs release) is ambiguous so only L1 is asserted. Not organisational
+    Change Management.
+- tag: Item
+  spec_file: propelplm-item-api-openapi.yml
+  capability_id: BC-820
+  capability_id_l1: BC-820
+  capability_name: Product Lifecycle Management
+  confidence: 0.72
+  evidence: POST /item createItem Create Item; PUT /item/{itemNumber} updateItem Update Item — "core PLM
+    objects — Items, Bills of Material (BOM), Changes"
+  reason: Item records are the core PLM part/product master managed through the product lifecycle; L1
+    only because the surface spans master data and specification semantics.
