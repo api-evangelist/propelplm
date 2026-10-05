@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/propelplm/OpenAPI/HEAD/openapi/schemas/v2/Markup/GetRedlines.yml",
+ "requested_url": "https://raw.githubusercontent.com/propelplm/OpenAPI/HEAD/openapi/schemas/v2/Markup/GetRedlines.yml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 3226,
+ "sha256": "f77b65ecca538cb145df4025b418406c8e379293f71f44f3855274776d04e848",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

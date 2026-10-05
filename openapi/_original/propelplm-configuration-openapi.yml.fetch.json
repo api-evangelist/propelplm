@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/propelplm/OpenAPI/HEAD/openapi/schemas/Configuration/Configuration.yaml",
+ "requested_url": "https://raw.githubusercontent.com/propelplm/OpenAPI/HEAD/openapi/schemas/Configuration/Configuration.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 3455,
+ "sha256": "d39890d0b210307020a09f893b68f143ebcfa0edc430d046c28ea2a1db9e230b",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
