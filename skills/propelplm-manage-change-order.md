@@ -2,7 +2,7 @@
 name: Create and release a Propel Change (ECO)
 description: Open a Change/ECO against affected items in Propel, inspect its full release package, and update it.
 api: openapi/propelplm-core-openapi.yml
-operations: [createChange, getChangeOrder, changePut]
+operations: [createChange, getChangeByItemNumber, changePut]
 ---
 
 # Create and release a Propel Change (ECO)
