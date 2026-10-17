@@ -66,6 +66,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Invalid manufacturer/distributor value(s). No items or parts created.
+    MfrList:
+      description: Model containing AML list object
+      type: object
+      required:
+      - addAML
+      properties:
+        addAML:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManufacturerPart'
+    ItemId:
+      description: The Salesforce record id of the Item
+      type: string
     ManufacturerPart:
       description: Model containing Manufacturer Part mappings
       type: object
@@ -81,23 +98,6 @@ components:
         distributor:
           type: string
           example: GenePoint
-    MfrList:
-      description: Model containing AML list object
-      type: object
-      required:
-      - addAML
-      properties:
-        addAML:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManufacturerPart'
-    ItemId:
-      description: The Salesforce record id of the Item
-      type: string
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Invalid manufacturer/distributor value(s). No items or parts created.
     NewOrExistingManufacturerItem:
       description: Model containing newly created Manufacturer Item details
       type: object

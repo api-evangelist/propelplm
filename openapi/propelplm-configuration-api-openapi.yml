@@ -65,6 +65,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Error:
+      description: A human readable error message or null/blank
+      type: string
+      example: Request body malformed.
+    SharingRule:
+      description: Example sharing rule custom metadata
+      type: object
+      required:
+      - Label
+      properties:
+        Label:
+          type: string
+          example: Sharing Rule 8 - Share with Manufacturers
+        Share_With_Field__c:
+          type: string
     GoogleDriveSetting:
       description: Example google drive custom setting
       type: object
@@ -89,21 +104,6 @@ components:
         Refresh_Token__c:
           type: string
         Released_Folder_Id__c:
-          type: string
-    Error:
-      description: A human readable error message or null/blank
-      type: string
-      example: Request body malformed.
-    SharingRule:
-      description: Example sharing rule custom metadata
-      type: object
-      required:
-      - Label
-      properties:
-        Label:
-          type: string
-          example: Sharing Rule 8 - Share with Manufacturers
-        Share_With_Field__c:
           type: string
   securitySchemes:
     oAuth2Implicit:
