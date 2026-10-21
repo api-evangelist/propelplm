@@ -1,0 +1,25 @@
+generated: '2026-10-20'
+method: searched
+checked:
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+source:
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+edges:
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000IrJYhUAN
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - Propel | Product Information Management (PIM) Native on Salesforce
+  - Propel One for Product Information
+  listing_count: 2
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: eCommerce, marketing
