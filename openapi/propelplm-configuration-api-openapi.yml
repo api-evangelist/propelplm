@@ -114,3 +114,9 @@ components:
           authorizationUrl: '{{url}}{{site}}/services/oauth2/authorize'
           scopes:
             api: Enable read and write access to Propel objects
+x-provenance:
+  method: harvested
+  publisher: Propel Software (Propel PLM)
+  source: https://raw.githubusercontent.com/propelplm/OpenAPI/HEAD/openapi/schemas/Configuration/Configuration.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
